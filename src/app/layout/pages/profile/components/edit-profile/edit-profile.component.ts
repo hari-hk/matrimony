@@ -22,6 +22,8 @@ export class EditProfileComponent implements OnInit {
 
   // Master Array
   maritalStatus: Array<any> = new Masters().maritalStatus;
+  dhosam: Array<any> = new Masters().dhosam;
+  bodyType: Array<any> = new Masters().body;
 
   currentEditing: string;
 
@@ -49,7 +51,16 @@ export class EditProfileComponent implements OnInit {
   }
   initSelfForm(): void {
     this.selfInfoForm = this.fb.group({
-      motherTongue: ['', Validators.compose([Validators.required])]
+      motherTongue: ['', Validators.compose([Validators.required])],
+      subCaste: ['', Validators.compose([Validators.required])],
+      gowthram: ['', Validators.compose([Validators.required])],
+      rasi: ['', Validators.compose([Validators.required])],
+      star: ['', Validators.compose([Validators.required])],
+      dhosam: ['', Validators.compose([Validators.required])],
+      bodyType: ['', Validators.compose([Validators.required])],
+      height: ['', Validators.compose([Validators.required])],
+      weight: ['', Validators.compose([Validators.required])],
+      languagesKnown: ['', Validators.compose([Validators.required])],
     });
   }
 
@@ -118,10 +129,11 @@ export class EditProfileComponent implements OnInit {
     const dialogRef = this.dialog.open(AutoCompleteComponent, {
       width: '320px',
       data: this.getPopUpTitles(control)
-
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`); // Pizza!
+      if (result) {
+        this[form].controls[control].setValue(result);
+      }
     });
   }
 
@@ -130,6 +142,12 @@ export class EditProfileComponent implements OnInit {
       title: '',
       list: []
     };
+
+    // gowthram: ['', Validators.compose([Validators.required])],
+    // rasi: ['', Validators.compose([Validators.required])],
+    // star: ['', Validators.compose([Validators.required])],
+    // height: ['', Validators.compose([Validators.required])],
+    // weight: ['', Validators.compose([Validators.required])],
     switch (control) {
       case 'motherTongue':
         data.title = 'Mother Tongue';
@@ -137,6 +155,24 @@ export class EditProfileComponent implements OnInit {
           return {
             name: el,
             id: el
+          };
+        });
+        break;
+      case 'subCaste':
+        data.title = 'Sub Caste';
+        data.list = new Masters().subCaste.map(el => {
+          return {
+            name: el.language,
+            id: el.id
+          };
+        });
+        break;
+      case 'subCaste':
+        data.title = 'Sub Caste';
+        data.list = new Masters().subCaste.map(el => {
+          return {
+            name: el.language,
+            id: el.id
           };
         });
         break;
