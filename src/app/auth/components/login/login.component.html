@@ -12,7 +12,10 @@
             <input formControlName="password" type="password" name="newPassword" id="password"
                 [class.error]="f.password.invalid && f.password.touched">
         </div>
-        <button type="submit">Submit
+        <button type="submit" [disabled]="loading">
+            <span *ngIf="!loading">Submit</span>
+            <img class="loader" *ngIf="loading" src="../../../../assets/images/loader/loader-white.gif" alt=""
+                srcset="">
         </button>
     </form>
     <a href="javascript:void(0)" (click)="navigateTo('/auth/forgot')" class="forgot">Forgot Password ?</a>

@@ -1,4 +1,4 @@
-<div class="login" [@fadeIn]="'in'">
+<div class="login" *ngIf="!showOtpPage" [@fadeIn]="'in'">
     <h1 class="title">
         Register
     </h1>
@@ -8,8 +8,8 @@
             <input formControlName="name" type="text" id="name" [class.error]="f.name.invalid && f.name.touched">
         </div>
         <div class="f-group">
-            <label for="phone">Mobile</label>
-            <input formControlName="phone" type="tel" id="phone" [class.error]="f.phone.invalid && f.phone.touched">
+            <label for="mobile">Mobile</label>
+            <input formControlName="mobile" type="tel" id="mobile" [class.error]="f.mobile.invalid && f.mobile.touched">
         </div>
         <div class="f-group">
             <label for="email">Email</label>
@@ -36,4 +36,20 @@
         <button type="submit">Submit</button>
     </form>
     <div class="dha" (click)="openLogin()">Already Have Account? <span>Login</span></div>
+</div>
+<!-- OTP section -->
+<div class="login" *ngIf="showOtpPage" [@fadeIn]="'in'">
+    <mat-icon class="close-button" (click)="showRegister()">close</mat-icon>
+    <h1 class="title otp-message">
+        OTP has send to {{loginForm.value.mobile}}
+    </h1>
+
+    <form (ngSubmit)="submitOtp()" [formGroup]="otpForm">
+        <div class="f-group">
+            <label for="name">Enter OTP</label>
+            <input formControlName="otp" minlength="4" maxlength="4" type="text" id="name"
+                [class.error]="otpForm.controls.otp.invalid && otpForm.controls.otp.touched">
+        </div>
+        <button type="submit">Validate</button>
+    </form>
 </div>

@@ -9,6 +9,7 @@ import {
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../service/auth.service';
+import { LoginResponse } from '../../models/login.model';
 
 @Component({
   selector: 'app-login',
@@ -27,6 +28,7 @@ import { AuthService } from '../../service/auth.service';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
+  loading: boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -51,10 +53,12 @@ export class LoginComponent implements OnInit {
       this.loginForm.markAllAsTouched();
       return;
     }
-    this.authService.login(this.loginForm.value).subscribe(response => {
-      console.log(response);
-
+    this.loading = true;
+    this.authService.login(this.loginForm.value).subscribe((response: LoginResponse) => {
+      localStorage.setItem('token', response.token);
+      this.loading = false;
     }, error => {
+      this.loading = false;
       console.log(error);
     });
     // this.router.navigate(['/'])

@@ -2,6 +2,8 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { RegisterValidate } from '../../models/register.model';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -20,10 +22,16 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
 
   loginForm: FormGroup;
+  otpForm: FormGroup;
+
+  loading: boolean;
+
+  showOtpPage: boolean;
 
   constructor(
     private fb: FormBuilder,
-    private router: Router) { }
+    private router: Router,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -31,8 +39,8 @@ export class RegisterComponent implements OnInit {
   initForm(): void {
     this.loginForm = this.fb.group({
       name: ['', Validators.compose([Validators.required])],
-      phone: ['', Validators.compose([Validators.required])],
-      email: ['', Validators.compose([Validators.required])],
+      mobile: ['', Validators.compose([Validators.required])],
+      email: ['', Validators.compose([Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')])],
       createdBy: ['self', Validators.compose([Validators.required])]
     });
   }
@@ -45,7 +53,31 @@ export class RegisterComponent implements OnInit {
       this.loginForm.markAllAsTouched();
       return;
     }
+    this.loading = true;
+    let params = new RegisterValidate();
+    params = {
+      email: this.loginForm.value.email,
+      mobile: this.loginForm.value.mobile
+    }
+    this.authService.validateEmail(params).subscribe(response => {
+      console.log(response);
+      this.loading = false;
+      this.showOtpPage = true;
+      this.initOtpForm();
+    }, err => {
+      this.loading = false;
+      console.log(err);
+    })
+  }
 
+  initOtpForm(): void {
+    this.otpForm = this.fb.group({
+      otp: ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(4)])]
+    })
+  }
+  showRegister() {
+    this.showOtpPage = false;
+    this.otpForm.reset();
   }
 
   selectCreatedBy(value) {
@@ -53,5 +85,9 @@ export class RegisterComponent implements OnInit {
   }
   openLogin(): void {
     this.router.navigate(['/auth'])
+  }
+
+  submitOtp(): void {
+
   }
 }
