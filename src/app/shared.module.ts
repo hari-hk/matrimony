@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 
@@ -14,13 +14,13 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatSidenavModule,
     MatButtonModule,
     MatIconModule,
-    MatProgressSpinnerModule
+    MatSnackBarModule
   ],
   exports: [
     MatSidenavModule,
     MatButtonModule,
     MatIconModule,
-    MatProgressSpinnerModule
+    MatSnackBarModule
   ]
 })
 export class SharedModule { }
