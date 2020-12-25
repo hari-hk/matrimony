@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
     selector: 'app-auto-complete',
@@ -10,7 +10,9 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class AutoCompleteComponent implements OnInit {
     list = [];
     debounceTimer: any;
-    constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
+    constructor(
+        @Inject(MAT_DIALOG_DATA) public data: any,
+        public dialogRef: MatDialogRef<any>) { }
 
     ngOnInit(): void {
         this.list = this.data.list;
@@ -24,5 +26,8 @@ export class AutoCompleteComponent implements OnInit {
                 this.data.list.filter(el => el.name.toLowerCase().includes(ev.target.value.toLowerCase()))
                 : this.data.list;
         }, 700);
+    }
+    closeDialog(data): void {
+        this.dialogRef.close(data);
     }
 }

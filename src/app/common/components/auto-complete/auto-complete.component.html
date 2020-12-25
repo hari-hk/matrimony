@@ -2,7 +2,7 @@
 
     <div class="title-area">
         <p>{{data.title}}</p>
-        <button type="button" mat-icon-button>
+        <button type="button" (click)="closeDialog('')" mat-icon-button>
             <mat-icon>close</mat-icon>
         </button>
     </div>
@@ -12,7 +12,7 @@
 
 <mat-dialog-content class="mat-typography">
     <div class="list">
-        <div class="item" *ngFor="let item of list">
+        <div class="item" *ngFor="let item of list" (click)="closeDialog(item.id)">
             {{item.name}}
         </div>
     </div>
