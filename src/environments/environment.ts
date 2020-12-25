@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://matrimony.yovan.in/backend/api/'
+  baseUrl: 'http://matrimony.yovan.in/backend/api/',
+  version: '1.0.1'
 };
 
 /*

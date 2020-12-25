@@ -4,23 +4,26 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
-
+import { AutoCompleteComponent } from './common/components/auto-complete/auto-complete.component';
 @NgModule({
-  declarations: [],
+  declarations: [AutoCompleteComponent],
   imports: [
     CommonModule,
     MatSidenavModule,
     MatButtonModule,
     MatIconModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDialogModule
   ],
   exports: [
     MatSidenavModule,
     MatButtonModule,
     MatIconModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDialogModule
   ]
 })
 export class SharedModule { }

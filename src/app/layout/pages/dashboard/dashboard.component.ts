@@ -15,7 +15,7 @@ export class DashboardComponent implements OnInit {
 
   }
   openAdvanceSearch(): void {
-    let dialogRef = this.dialog.open(AdvanceSearchComponent, {})
+    const dialogRef = this.dialog.open(AdvanceSearchComponent, {});
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`); // Pizza!
     });

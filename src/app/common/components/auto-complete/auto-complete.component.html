@@ -1,0 +1,19 @@
+<div mat-dialog-title class="toolbar">
+
+    <div class="title-area">
+        <p>{{data.title}}</p>
+        <button type="button" mat-icon-button>
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <input class="search" (input)="filterData($event)" type="text" placeholder="Search Here">
+
+</div>
+
+<mat-dialog-content class="mat-typography">
+    <div class="list">
+        <div class="item" *ngFor="let item of list">
+            {{item.name}}
+        </div>
+    </div>
+</mat-dialog-content>

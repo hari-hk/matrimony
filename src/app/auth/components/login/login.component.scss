@@ -10,32 +10,7 @@
         text-align: center;
         color: #ffffff;
     }
-    .f-group {
-        position: relative;
-        width: 100%;
 
-        label {
-            position: absolute;
-            font-size: 12px;
-            top: 19px;
-            left: 13px;
-            color: #ffffff;
-        }
-        input {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.15);
-            color: #ffffff;
-            border: 1px solid #ffffff;
-            outline: none;
-            box-shadow: 0 8px 12px 0 rgb(144 121 124);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-            border-radius: 10px;
-            padding: 26px 10px 10px 14px;
-            margin: 10px 0;
-            font-size: 16px;
-        }
-    }
     button {
         width: 100%;
         color: #ffffff;

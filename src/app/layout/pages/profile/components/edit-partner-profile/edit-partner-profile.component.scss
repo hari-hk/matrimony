@@ -1,0 +1,23 @@
+.profile {
+    height: calc(100vh - 60px);
+    overflow-y: scroll;
+    .analyt {
+        padding: 10px;
+        margin: 10px auto;
+    }
+    .title {
+        display: grid;
+        align-items: center;
+        justify-content: start;
+        grid-template-columns: 20px auto;
+        grid-gap: 0.8em;
+        margin: 10px 0;
+        p {
+            margin: 0;
+            font-weight: bold;
+        }
+        mat-icon {
+            cursor: pointer;
+        }
+    }
+}

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AdvanceSearchComponent } from './components/advance-search/advance-search.component';
-import { MatDialogModule } from '@angular/material/dialog';
+import { SharedModule } from 'src/app/shared.module';
 
 
 const routes: Routes = [
@@ -14,7 +14,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    MatDialogModule
+    SharedModule
   ],
   entryComponents: [AdvanceSearchComponent]
 })
