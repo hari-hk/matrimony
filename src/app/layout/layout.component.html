@@ -1,0 +1,41 @@
+<mat-drawer-container class="container-fluid layout" [hasBackdrop]="true">
+    <mat-drawer #drawer>
+        <div class="mobile-menu">
+            <div class="app-icon">
+                <img src="../../assets/images/img/logo.jpg" alt="">
+            </div>
+            <ul (click)="drawer.toggle()">
+                <li routerLink="/layout/home" routerLinkActive="current">Home</li>
+                <li routerLink="/layout/profile" routerLinkActive="current">My Profile</li>
+                <li routerLink="/layout/interest" routerLinkActive="current">My Interest</li>
+                <li routerLink="/layout/new-join" routerLinkActive="current">New Join</li>
+                <li routerLink="/layout/short-list" routerLinkActive="current">Short List</li>
+                <li>Customer Care</li>
+                <li routerLink="/layout/my-plan" routerLinkActive="current">My Plan</li>
+                <li routerLink="/auth" routerLinkActive="current"> Logout</li>
+            </ul>
+        </div>
+    </mat-drawer>
+    <mat-drawer-content>
+        <nav class="d-grid align-items-center">
+            <button mat-icon-button class="menu-btn d-block d-md-none " (click)="drawer.toggle()">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <div class="container d-none d-md-flex menu align-items-center justify-content-between">
+                <div class="app-icon" routerLink="/layout/home">
+                    <img src="../../assets/images/img/logo.jpg" alt="">
+                </div>
+                <ul>
+                    <li routerLink="/layout/home" routerLinkActive="current">Home</li>
+                    <li routerLink="/layout/interest" routerLinkActive="current">My Interest</li>
+                    <li routerLink="/layout/new-join" routerLinkActive="current">New Join</li>
+                    <li routerLink="/layout/short-list" routerLinkActive="current">Short List</li>
+                    <li routerLink="/auth/" routerLinkActive="current">Logout</li>
+                </ul>
+            </div>
+        </nav>
+        <div class="content">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-drawer-content>
+</mat-drawer-container>

@@ -1,0 +1,18 @@
+.search-btn {
+    display: block;
+    background: var(--primary);
+}
+.cancel-btn {
+    display: block;
+    background: #000;
+}
+.action {
+    button {
+        margin: 0 5px;
+        outline: none;
+        border: none;
+        padding: 7px 15px;
+        border-radius: 10px;
+        color: #ffffff;
+    }
+}

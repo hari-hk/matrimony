@@ -1,0 +1,81 @@
+<div class="container partner">
+    <div class="row align-items-center">
+        <div class="col-md-4">
+            <img src="../../../../assets/images/img/dummy-profile.png" alt="" class="profile-img">
+        </div>
+        <div class="col-md-8 col-lg-4">
+            <div class="name">Divya Dharshini</div>
+            <div class="other-detail">
+                M7854357
+            </div>
+            <div class="other-detail">
+                Profile created by sibling
+            </div>
+            <div class="actions">
+                <button>Favourite</button>
+                <button>Horoscope</button>
+                <button>Interest</button>
+                <button>Call</button>
+            </div>
+        </div>
+    </div>
+    <hr>
+
+    <div class="row">
+        <div class="col-12">
+            <p class="heading">
+                About Me
+            </p>
+            <p class="description">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. A ad eos commodi tempora. Dolor tempora officia
+                eos quidem in aut culpa. Iure beatae ad corrupti reiciendis iusto sint ex aperiam.
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fuga tempora velit inventore necessitatibus
+                asperiores ipsum praesentium rerum, a quo fugiat ullam deserunt. Animi, quos! Fuga eligendi quis velit
+                nesciunt? Ipsa.
+            </p>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-6 p10">
+            <div class="analyt">
+                <p class="heading"> Basic Information</p>
+                <div class="row" *ngFor="let item of basicInfo">
+                    <div class="col-5">{{item.key}}</div>
+                    <div class="col-1">:</div>
+                    <div class="col-5">{{item.value}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 p10">
+            <div class="analyt">
+                <p class="heading"> Self Information</p>
+                <div class="row" *ngFor="let item of selfInfo">
+                    <div class="col-5">{{item.key}}</div>
+                    <div class="col-1">:</div>
+                    <div class="col-5">{{item.value}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 p10 ">
+            <div class="analyt">
+                <p class="heading"> Basic Information</p>
+                <div class="row" *ngFor="let item of basicInfo">
+                    <div class="col-5">{{item.key}}</div>
+                    <div class="col-1">:</div>
+                    <div class="col-5">{{item.value}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 p10">
+            <div class="analyt">
+                <p class="heading"> Self Information</p>
+                <div class="row" *ngFor="let item of selfInfo">
+                    <div class="col-5">{{item.key}}</div>
+                    <div class="col-1">:</div>
+                    <div class="col-5">{{item.value}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
