@@ -9,6 +9,7 @@ import { SharedModule } from './shared.module';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 import { ApiService } from './services/api.service';
+import { UserService } from './services/user.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { ConfigInterceptor } from './interceptors/config.interceptor';
@@ -27,6 +28,7 @@ import { ConfigInterceptor } from './interceptors/config.interceptor';
   ],
   providers: [
     ApiService,
+    UserService,
     { provide: HTTP_INTERCEPTORS, useClass: ConfigInterceptor, multi: true },
     { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],

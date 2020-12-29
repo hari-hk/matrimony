@@ -18,8 +18,12 @@ body {
 *,
 *:before,
 *:after {
-    font-family: "Oxygen", sans-serif;
+    font-family: "Oxygen", sans-serif !important;
     box-sizing: border-box !important;
+}
+pre {
+    font-family: "Oxygen", sans-serif !important;
+    font-size: inherit;
 }
 
 :root {

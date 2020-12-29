@@ -10,7 +10,7 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  public get(url: string, body: any): Observable<any> {
+  public get(url: string, body?: any): Observable<any> {
     return this.http.get(environment.baseUrl + url, { params: body });
   }
 

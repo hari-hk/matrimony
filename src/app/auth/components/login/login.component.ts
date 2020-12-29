@@ -55,13 +55,15 @@ export class LoginComponent implements OnInit {
     }
     this.loading = true;
     this.authService.login(this.loginForm.value).subscribe((response: LoginResponse) => {
-      localStorage.setItem('token', response.token);
+      if (response?.status) {
+        localStorage.setItem('token', response.token);
+        this.router.navigate(['/']);
+      }
       this.loading = false;
     }, error => {
       this.loading = false;
       console.log(error);
     });
-    // this.router.navigate(['/'])
   }
 
   navigateTo(path): void {
