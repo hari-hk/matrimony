@@ -7,13 +7,14 @@ import { SharedModule } from 'src/app/shared.module';
 
 import { DashboardService } from './services/dashboard.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SuggestionsComponent } from './components/suggestions/suggestions.component';
 
 
 const routes: Routes = [
   { path: '', component: DashboardComponent }
 ];
 @NgModule({
-  declarations: [DashboardComponent, AdvanceSearchComponent],
+  declarations: [DashboardComponent, AdvanceSearchComponent, SuggestionsComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

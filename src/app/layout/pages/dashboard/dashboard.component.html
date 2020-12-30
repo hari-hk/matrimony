@@ -86,27 +86,8 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="analyt suggesions">
-                    <div class="title">
-                        <span>Suggested For You</span>
-                        <hr>
-                    </div>
-                    <div class="list">
-                        <div class="customer-card" *ngFor="let item of matches"
-                            [routerLink]="'/layout/partner/'+item.id">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="">
-                                    <p class="id">{{item.matrimonyId}}</p>
-                                    <h3 class="name">{{item.name}}</h3>
-                                </div>
-                                <img class="profile-pic" [src]="item.image" alt="profile image"
-                                    onerror="this.src='../../../../assets/images/img/dummy-profile.png';">
-                            </div>
-                            <h4 class="details">{{item.age}}yrs/{{item.height}}cm, {{item.location}}</h4>
-                            <h2 class="occupation">{{item.occupation}}</h2>
-                        </div>
-                    </div>
-                </div>
+                <app-suggestions></app-suggestions>
+
             </div>
         </div>
     </div>
