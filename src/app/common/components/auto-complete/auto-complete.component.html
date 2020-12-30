@@ -2,11 +2,11 @@
 
     <div class="title-area">
         <p>{{data.title}}</p>
-        <button type="button" (click)="closeDialog('')" mat-icon-button>
+        <button type="button" autofocus="false" (click)="closeDialog('')" mat-icon-button>
             <mat-icon>close</mat-icon>
         </button>
     </div>
-    <input class="search" (input)="filterData($event)" type="text" placeholder="Search Here">
+    <input class="search" #search autofocus (input)="filterData($event)" type="text" placeholder="Search Here">
 
 </div>
 
@@ -14,6 +14,11 @@
     <div class="list">
         <div class="item" *ngFor="let item of list" (click)="closeDialog(item.id)">
             {{item.name}}
+        </div>
+
+        <div class="no-data" *ngIf="list.length===0">
+            <img src="../../../../assets/images/img/empty.png" alt="no data" srcset="">
+            <p>No Data Found</p>
         </div>
     </div>
 </mat-dialog-content>

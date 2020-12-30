@@ -1,4 +1,5 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { AfterViewInit, ElementRef } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
@@ -7,15 +8,23 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
     styleUrls: ['./auto-complete.component.scss']
 })
 
-export class AutoCompleteComponent implements OnInit {
+export class AutoCompleteComponent implements OnInit, AfterViewInit {
     list = [];
     debounceTimer: any;
+
+    @ViewChild('search') private search: ElementRef;
+
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: any,
         public dialogRef: MatDialogRef<any>) { }
 
     ngOnInit(): void {
         this.list = this.data.list;
+    }
+    ngAfterViewInit(): void {
+        setTimeout(() => {
+            this.search.nativeElement.focus();
+        }, 200);
     }
     filterData(ev): void {
         if (this.debounceTimer) {
