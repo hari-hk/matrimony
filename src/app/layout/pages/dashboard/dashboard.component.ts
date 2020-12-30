@@ -5,7 +5,7 @@ import { UserService } from 'src/app/services/user.service';
 import { AdvanceSearchComponent } from './components/advance-search/advance-search.component';
 import { DashboardService } from './services/dashboard.service';
 
-import { Count } from './models/count.model';
+import { Count } from '../../../common/models/count.model';
 import { Matches } from './models/matches.model';
 @Component({
   selector: 'app-dashboard',
@@ -43,20 +43,20 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }));
   }
   getCount(): void {
-    this.dashboardService.getCount().subscribe((response: Count) => {
+    this.userService.getCount().subscribe((response: Count) => {
       this.count = response;
     });
   }
   getMatches(): void {
     this.dashboardService.getMatches().subscribe((response: any) => {
-      console.log(response);
-
       this.matches = response;
     });
   }
 
   openAdvanceSearch(): void {
-    const dialogRef = this.dialog.open(AdvanceSearchComponent, {});
+    const dialogRef = this.dialog.open(AdvanceSearchComponent, {
+      maxWidth: 600
+    });
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });

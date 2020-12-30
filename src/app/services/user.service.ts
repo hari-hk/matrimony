@@ -1,7 +1,13 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
+
 import { ApiService } from './api.service';
+
+
+import { Count } from '../common/models/count.model';
+
+
 
 @Injectable({
     providedIn: 'root'
@@ -34,6 +40,12 @@ export class UserService {
 
     purgeAuth(): void {
         localStorage.removeItem('token');
+    }
+
+    public getCount(): Observable<Count> {
+        return this.api.get('count').pipe(
+            map(resp => new Count(resp))
+        );
     }
 
 }

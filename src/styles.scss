@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap");
-
 @import url("./assets/css/bootstrap.min.css");
 
 html {
@@ -18,12 +17,15 @@ body {
 *,
 *:before,
 *:after {
-    font-family: "Oxygen", sans-serif !important;
+    font-family: "Oxygen", sans-serif;
     box-sizing: border-box !important;
 }
 pre {
     font-family: "Oxygen", sans-serif !important;
     font-size: inherit;
+}
+md-icon {
+    font-family: "Material Icons" !important;
 }
 
 :root {
@@ -63,13 +65,14 @@ pre {
         color: #ffffff;
     }
     input,
-    textarea {
+    textarea,
+    select {
         width: 100%;
-        background: rgba(255, 255, 255, 0.15);
+        background: rgb(169 169 169 / 15%);
         color: #ffffff;
         border: 1px solid #ffffff;
         outline: none;
-        box-shadow: 0 8px 12px 0 rgb(144 121 124);
+        box-shadow: 0 8px 12px 0 #d6d6d6;
         backdrop-filter: blur(4px);
         -webkit-backdrop-filter: blur(4px);
         border-radius: 10px;

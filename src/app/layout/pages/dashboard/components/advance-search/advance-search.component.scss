@@ -16,3 +16,25 @@
         color: #ffffff;
     }
 }
+
+.f-group {
+    label {
+        color: var(--primary);
+        z-index: 1;
+        margin-left: 11px;
+    }
+    input,
+    select,
+    textarea {
+        color: #000000;
+    }
+}
+.assembled {
+    span {
+        padding: 10px;
+    }
+}
+.select-guard {
+    width: 100%;
+    cursor: pointer;
+}

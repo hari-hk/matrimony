@@ -31,7 +31,7 @@ export class ConfigInterceptor implements HttpInterceptor {
       // });
       request = request.clone({
         params: request.params.set('token', this.userService.getToken)
-      })
+      });
     }
 
     return next.handle(request)

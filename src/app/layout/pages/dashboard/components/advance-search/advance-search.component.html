@@ -1,67 +1,82 @@
 <h2 mat-dialog-title>Advance Search</h2>
 <mat-dialog-content class="mat-typography">
-    <h3>Develop across all platforms</h3>
-    <p>Learn one way to build applications with Angular and reuse your code and abilities to build
-        apps for any deployment target. For web, mobile web, native mobile and native desktop.</p>
-
-    <h3>Speed &amp; Performance</h3>
-    <p>Achieve the maximum speed possible on the Web Platform today, and take it further, via Web
-        Workers and server-side rendering. Angular puts you in control over scalability. Meet huge
-        data requirements by building data models on RxJS, Immutable.js or another push-model.</p>
-
-    <h3>Incredible tooling</h3>
-    <p>Build features quickly with simple, declarative templates. Extend the template language with
-        your own components and use a wide array of existing components. Get immediate Angular-specific
-        help and feedback with nearly every IDE and editor. All this comes together so you can focus
-        on building amazing apps rather than trying to make the code work.</p>
-
-    <h3>Loved by millions</h3>
-    <p>From prototype through global deployment, Angular delivers the productivity and scalable
-        infrastructure that supports Google's largest applications.</p>
-
-    <h3>What is Angular?</h3>
-
-    <p>Angular is a platform that makes it easy to build applications with the web. Angular
-        combines declarative templates, dependency injection, end to end tooling, and integrated
-        best practices to solve development challenges. Angular empowers developers to build
-        applications that live on the web, mobile, or the desktop</p>
-
-    <h3>Architecture overview</h3>
-
-    <p>Angular is a platform and framework for building client applications in HTML and TypeScript.
-        Angular is itself written in TypeScript. It implements core and optional functionality as a
-        set of TypeScript libraries that you import into your apps.</p>
-
-    <p>The basic building blocks of an Angular application are NgModules, which provide a compilation
-        context for components. NgModules collect related code into functional sets; an Angular app is
-        defined by a set of NgModules. An app always has at least a root module that enables
-        bootstrapping, and typically has many more feature modules.</p>
-
-    <p>Components define views, which are sets of screen elements that Angular can choose among and
-        modify according to your program logic and data. Every app has at least a root component.</p>
-
-    <p>Components use services, which provide specific functionality not directly related to views.
-        Service providers can be injected into components as dependencies, making your code modular,
-        reusable, and efficient.</p>
-
-    <p>Both components and services are simply classes, with decorators that mark their type and
-        provide metadata that tells Angular how to use them.</p>
-
-    <p>The metadata for a component class associates it with a template that defines a view. A
-        template combines ordinary HTML with Angular directives and binding markup that allow Angular
-        to modify the HTML before rendering it for display.</p>
-
-    <p>The metadata for a service class provides the information Angular needs to make it available
-        to components through Dependency Injection (DI).</p>
-
-    <p>An app's components typically define many views, arranged hierarchically. Angular provides
-        the Router service to help you define navigation paths among views. The router provides
-        sophisticated in-browser navigational capabilities.</p>
+    <div class="row">
+        <div class="f-group assembled d-flex align-items-center">
+            <label for="name">Select Age</label>
+            <div class="select-guard" (click)="openAutoComplete('ageFrom')">
+                <select name="ageFrom" [(ngModel)]="filterData.ageFrom" id="ageFrom" disabled>
+                    <option *ngFor="let item of numbers.from" [value]="item">{{item}}</option>
+                </select>
+            </div>
+            <span>To</span>
+            <div class="select-guard" (click)="filterData.ageFrom && openAutoComplete('ageTo')">
+                <select name="ageTo" [(ngModel)]="filterData.ageTo" id="ageTo" disabled>
+                    <option *ngFor="let item of numbers.to" [value]="item">{{item}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="f-group assembled d-flex align-items-center">
+            <label for="name">Select Height</label>
+            <div class="select-guard" (click)="openAutoComplete('heightFrom')">
+                <select name="heightFrom" id="heightFrom" [(ngModel)]="filterData.heightFrom" disabled>
+                    <option *ngFor="let item of height" [value]="item.id">{{item.name}}</option>
+                </select>
+            </div>
+            <span>To</span>
+            <div class="select-guard" (click)="openAutoComplete('heightTo')">
+                <select name="heightTo" id="heightTo" [(ngModel)]="filterData.heightTo" disabled>
+                    <option *ngFor="let item of height" [value]="item.id">{{item.name}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="f-group select-guard" (click)="openAutoComplete('maritalStatus')">
+            <label for="maritalStatus">Marital Status</label>
+            <select name="maritalStatus" id="maritalStatus" [(ngModel)]="filterData.maritalStatus" disabled>
+                <option *ngFor="let item of martialStatus" [value]="item.id">{{item.name}}</option>
+            </select>
+        </div>
+        <div class="f-group select-guard" (click)="openAutoComplete('motherTongue')">
+            <label for="motherTongue">Mother Tongue</label>
+            <select name="motherTongue" id="motherTongue" [(ngModel)]="filterData.motherTongue" disabled>
+                <option *ngFor="let item of languages" [value]="item.id">{{item.name}}</option>
+            </select>
+        </div>
+        <div class="f-group select-guard" (click)="openAutoComplete('subcaste')">
+            <label for="subcaste">Sub caste</label>
+            <select name="subcaste" id="subcaste" [(ngModel)]="filterData.subcaste" disabled>
+                <option *ngFor="let item of subcaste" [value]="item.id">{{item.name}}</option>
+            </select>
+        </div>
+        <div class="f-group select-guard" (click)="openAutoComplete('star')">
+            <label for="star">Star</label>
+            <select name="star" id="star" [(ngModel)]="filterData.star" disabled>
+                <option *ngFor="let item of star" [value]="item.id">{{item.name}}</option>
+            </select>
+        </div>
+        <div class="f-group select-guard" (click)="openAutoComplete('dosham')">
+            <label for="dosham">Dhosam</label>
+            <select name="dosham" id="dosham" [(ngModel)]="filterData.dosham" disabled>
+                <option *ngFor="let item of dhosam" [value]="item.id">{{item.name}}</option>
+            </select>
+        </div>
+        <div class="f-group select-guard" (click)="openAutoComplete('occupation')">
+            <label for="occupation">Occupation</label>
+            <select name="occupation" id="occupation" [(ngModel)]="filterData.occupation" disabled>
+                <option *ngFor="let item of occupation" [value]="item.id">{{item.name}}</option>
+            </select>
+        </div>
+        <div class="f-group select-guard" (click)="openAutoComplete('annualIncome')">
+            <label for="annualIncome">Annual income (minimum)</label>
+            <select name="annualIncome" id="annualIncome" [(ngModel)]="filterData.annualIncome" disabled>
+                <option *ngFor="let item of annualIncome" [value]="item.id">{{item.name}}</option>
+            </select>
+        </div>
+    </div>
 </mat-dialog-content>
 <mat-dialog-actions align="center">
     <div class="d-flex action">
         <button class="cancel-btn" mat-button mat-dialog-close>Cancel</button>
-        <button class="search-btn" mat-button mat-dialog-close>Search</button>
+        <button class="search-btn" mat-button mat-dialog-close>Apply Filter</button>
     </div>
 
 </mat-dialog-actions>

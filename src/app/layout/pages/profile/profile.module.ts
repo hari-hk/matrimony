@@ -21,7 +21,7 @@ const routes: Routes = [
       { path: 'change-password', component: ChangePasswordComponent },
     ]
   }
-]
+];
 
 @NgModule({
   declarations: [

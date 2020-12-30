@@ -160,18 +160,18 @@ export class EditProfileComponent implements OnInit {
         break;
       case 'subCaste':
         data.title = 'Sub Caste';
-        data.list = new Masters().subCaste.map(el => {
+        data.list = new Masters().dhosam.map(el => {
           return {
-            name: el.language,
+            name: el.name,
             id: el.id
           };
         });
         break;
       case 'subCaste':
         data.title = 'Sub Caste';
-        data.list = new Masters().subCaste.map(el => {
+        data.list = new Masters().dhosam.map(el => {
           return {
-            name: el.language,
+            name: el.name,
             id: el.id
           };
         });
