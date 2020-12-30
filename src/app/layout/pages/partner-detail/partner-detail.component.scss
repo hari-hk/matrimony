@@ -19,8 +19,8 @@
         color: #505050;
     }
     .other-detail {
-        font-size: 16px;
-        color: #313131;
+        font-size: 14px;
+        color: #3b3b3b;
         margin-bottom: 10px;
     }
     .actions {
@@ -57,4 +57,7 @@
 
 .p10 {
     padding: 10px !important;
+}
+.col-5 {
+    word-break: break-all;
 }

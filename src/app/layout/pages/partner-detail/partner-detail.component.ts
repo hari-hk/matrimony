@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { Partner } from 'src/app/common/models/partner.model';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-partner-detail',
@@ -27,12 +31,33 @@ export class PartnerDetailComponent implements OnInit {
     { key: 'Star', value: 'Mithunam' },
     { key: 'Dosham', value: 'None' },
 
-  ]
+  ];
 
-  constructor() {
+  public subscription: Array<Subscription> = [];
+  partnerId: string;
+
+  detail: Partner;
+
+  constructor(
+    private route: ActivatedRoute,
+    public userService: UserService) {
   }
 
   ngOnInit(): void {
+    this.initSubscriptions();
+  }
+
+  initSubscriptions(): void {
+    this.subscription.push(this.route.params.subscribe(data => {
+      this.partnerId = data.id;
+      this.getPartnerDetails();
+    }));
+  }
+  getPartnerDetails(): void {
+    this.userService.getPartnerDetail(this.partnerId).subscribe((response: Partner) => {
+      console.log(response);
+      this.detail = response;
+    });
   }
 
 }

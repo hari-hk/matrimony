@@ -6,7 +6,7 @@ import { ApiService } from './api.service';
 
 
 import { Count } from '../common/models/count.model';
-
+import { Partner } from '../common/models/partner.model';
 
 
 @Injectable({
@@ -38,13 +38,19 @@ export class UserService {
         return this.profileDetail.value;
     }
 
-    purgeAuth(): void {
+    public purgeAuth(): void {
         localStorage.removeItem('token');
     }
 
     public getCount(): Observable<Count> {
         return this.api.get('count').pipe(
             map(resp => new Count(resp))
+        );
+    }
+
+    public getPartnerDetail(id): Observable<any> {
+        return this.api.post('getDetailPage', { id }).pipe(
+            map(payload => new Partner(payload.dashboard[0]))
         );
     }
 
