@@ -11,7 +11,7 @@
                         {{details.aboutMe}}
                     </h4>
                     <hr>
-                    <p class="success">100% Profile completed</p>
+                    <p class="success">{{count?.profilePercentage}}% Profile completed</p>
                     <button class="update" routerLink="/layout/profile">Update</button>
                 </div>
 
@@ -51,34 +51,36 @@
                 </div>
 
                 <div class="backlog analyt">
-                    <div class="row  align-items-center">
-                        <!-- <div class="col-4 count green">300</div>
-                        <div class="col-8 key-name"> New Match</div> -->
-                        <div class="message">
-                            <p>
-                                Matches will show after completing profile setup.
-                            </p>
-                            <button>Update</button>
+                    <ng-container *ngIf="count?.profilePercentage !==100">
+                        <div class="row  align-items-center">
+                            <div class="message">
+                                <p>
+                                    Matches will show after completing profile setup.
+                                </p>
+                                <button>Update</button>
+                            </div>
                         </div>
-                    </div>
-                    <hr>
+                        <hr>
+                    </ng-container>
+
+
                     <div class="row  align-items-center">
-                        <div class="col-4 count green">300</div>
+                        <div class="col-4 count green">{{count?.interestedCount}}</div>
                         <div class="col-8 key-name"> New Profile</div>
                     </div>
                     <hr>
                     <div class="row  align-items-center">
-                        <div class="col-4 count blue">230</div>
+                        <div class="col-4 count blue">{{count?.viewcount}}</div>
                         <div class="col-8 key-name"> Viewed Your Profile</div>
                     </div>
                     <hr>
                     <div class="row  align-items-center">
-                        <div class="col-4 count teal">110</div>
+                        <div class="col-4 count teal">{{count?.shortListCount}}</div>
                         <div class="col-8 key-name"> Sortlisted</div>
                     </div>
                     <hr>
                     <div class="row  align-items-center">
-                        <div class="col-4 count orange">290</div>
+                        <div class="col-4 count orange">{{count?.interestedCount}}</div>
                         <div class="col-8 key-name"> Interested on you</div>
                     </div>
                 </div>
@@ -86,21 +88,21 @@
             <div class="col-md-4">
                 <div class="analyt suggesions">
                     <div class="title">
-                        <span>New Members Profile</span>
+                        <span>Suggested For You</span>
                         <hr>
                     </div>
                     <div class="list">
-                        <div class="customer-card" *ngFor="let item of [1,2,3,4,5]">
+                        <div class="customer-card" *ngFor="let item of matches">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="">
-                                    <p class="id">HL31756</p>
-                                    <h3 class="name">Subash</h3>
+                                    <p class="id">{{item.matrimonyId}}</p>
+                                    <h3 class="name">{{item.name}}</h3>
                                 </div>
-                                <img class="profile-pic" src="../../../../assets/images/img/dummy-profile.png" alt=""
-                                    srcset="">
+                                <img class="profile-pic" [src]="item.image" alt="profile image"
+                                    onerror="this.src='../../../../assets/images/img/dummy-profile.png';">
                             </div>
-                            <h4 class="details">22yrs/152cm, Chennai,Chennai, Tamilnadu</h4>
-                            <h2 class="occupation">Admin/ B.Tech</h2>
+                            <h4 class="details">{{item.age}}yrs/{{item.height}}cm, {{item.location}}</h4>
+                            <h2 class="occupation">{{item.occupation}}</h2>
                         </div>
                     </div>
                 </div>

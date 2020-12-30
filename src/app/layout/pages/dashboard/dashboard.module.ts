@@ -5,6 +5,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdvanceSearchComponent } from './components/advance-search/advance-search.component';
 import { SharedModule } from 'src/app/shared.module';
 
+import { DashboardService } from './services/dashboard.service';
+
 
 const routes: Routes = [
   { path: '', component: DashboardComponent }
@@ -16,6 +18,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SharedModule
   ],
+  providers: [DashboardService],
   entryComponents: [AdvanceSearchComponent]
 })
 export class DashboardModule { }

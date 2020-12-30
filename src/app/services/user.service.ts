@@ -21,7 +21,7 @@ export class UserService {
     }
 
     public getProfile(): Observable<any> {
-        return this.api.get('getProfileDetails', { token: this.getToken }).pipe(
+        return this.api.get('getProfileDetails').pipe(
             tap(response => {
                 this.profileDetail.next(response.dashboard[0]);
                 return response;

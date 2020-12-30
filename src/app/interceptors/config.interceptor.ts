@@ -24,11 +24,14 @@ export class ConfigInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
     if (this.userService.hasToken) {
+      // request = request.clone({
+      //   setHeaders: {
+      //     token: `Bearer ${this.userService.getToken}`
+      //   }
+      // });
       request = request.clone({
-        setHeaders: {
-          token: `Bearer ${this.userService.getToken}`
-        }
-      });
+        params: request.params.set('token', this.userService.getToken)
+      })
     }
 
     return next.handle(request)
