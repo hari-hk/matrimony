@@ -234,3 +234,8 @@
         </div>
     </div>
 </div>
+
+<div class="container no-data" *ngIf="!detail">
+    <p>{{loading?'Loading...' :'Data Not Found'}}</p>
+    <img src="../../../../assets/images/img/waiting.png" alt="no data found" srcset="">
+</div>

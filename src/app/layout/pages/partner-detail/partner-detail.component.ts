@@ -11,32 +11,10 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class PartnerDetailComponent implements OnInit {
 
-  basicInfo = [
-    { key: 'Name', value: 'Divya Dharshini' },
-    { key: 'Mobile Number', value: 8428524623 },
-    { key: 'Profile Creator', value: 'Self' },
-    { key: 'Marital Status', value: 'Un Married' },
-    { key: 'Language Known', value: 'Malayalam, Hindi' },
-    { key: 'Height', value: '162 cm' },
-    { key: 'Weight', value: '60 Kg' },
-    { key: 'Age', value: '25' },
-  ];
-  selfInfo = [
-    { key: 'Mother Tongue', value: 'Tamil' },
-    { key: 'Religion', value: 'Hindu' },
-    { key: 'Caste', value: 'Nadar' },
-    { key: 'Sub caste', value: '-' },
-    { key: 'Gouthram', value: 'Dont Know' },
-    { key: 'Rasi', value: 'Gemini' },
-    { key: 'Star', value: 'Mithunam' },
-    { key: 'Dosham', value: 'None' },
-
-  ];
-
   public subscription: Array<Subscription> = [];
   partnerId: string;
-
   detail: Partner;
+  loading = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -55,9 +33,8 @@ export class PartnerDetailComponent implements OnInit {
   }
   getPartnerDetails(): void {
     this.userService.getPartnerDetail(this.partnerId).subscribe((response: Partner) => {
-      console.log(response);
       this.detail = response;
-    });
+      this.loading = false;
+    }, err => { this.loading = false; });
   }
-
 }
