@@ -21,7 +21,6 @@ export class SuggestionsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMatches();
-
   }
   getMatches(): void {
     this.dashboardService.getMatches().subscribe((response: any) => {
