@@ -10,6 +10,7 @@ const routes: Routes = [{
     { path: 'partner', loadChildren: () => import('./pages/partner-detail/partner-detail.module').then(m => m.PartnerDetailModule) },
     { path: 'interest', loadChildren: () => import('./pages/my-interest/my-interest.module').then(m => m.MyInterestModule) },
     { path: 'profile', loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfileModule) },
+    { path: 'plans', loadChildren: () => import('./pages/plans/plans.module').then(m => m.PlansModule) }
   ]
 }];
 

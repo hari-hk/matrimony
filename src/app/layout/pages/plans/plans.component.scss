@@ -1,0 +1,73 @@
+$start-color: #2f2865;
+$pro-color: #fb8c44;
+
+.pro {
+    color: $pro-color;
+    button {
+        background: $pro-color;
+        color: #fff;
+    }
+}
+.start {
+    color: $start-color;
+    button {
+        background: $start-color;
+        color: #fff;
+    }
+}
+
+.plans {
+    height: calc(100vh - 60px);
+    overflow: scroll;
+    .subscription {
+        max-width: 310px;
+        padding: 10px;
+        margin: 0.6em auto;
+        .title {
+            text-align: center;
+            font-size: large;
+            text-transform: uppercase;
+        }
+        .sub-img {
+            height: 50px;
+            width: 50px;
+            margin: 10px auto;
+        }
+        .price {
+            text-align: center;
+            font-size: x-large;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin: 0.6em 0 0 0;
+        }
+        hr {
+            margin: 0.5em 0;
+        }
+        p {
+            font-size: large;
+            text-align: center;
+            margin: 4px 0 13px 0;
+            text-transform: uppercase;
+        }
+        button {
+            border-radius: 5px;
+            border: none;
+            padding: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1.3px;
+            outline: none;
+        }
+        ul {
+            padding: 0;
+            list-style: none;
+            li {
+                font-size: 15px;
+                padding: 5px 0;
+                span {
+                    vertical-align: middle;
+                    margin-right: 2px;
+                }
+            }
+        }
+    }
+}

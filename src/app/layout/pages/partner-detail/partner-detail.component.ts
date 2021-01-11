@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Partner } from 'src/app/common/models/partner.model';
@@ -18,7 +19,8 @@ export class PartnerDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    public userService: UserService) {
+    public userService: UserService,
+    private snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
@@ -36,5 +38,26 @@ export class PartnerDetailComponent implements OnInit {
       this.detail = response;
       this.loading = false;
     }, err => { this.loading = false; });
+  }
+
+  addToSortList(): void {
+    this.userService.applySortList({ shortListUserId: this.partnerId }).subscribe(res => {
+      this.showToast('Successfully Added to SortList');
+    }, err => {
+      this.showToast(err?.message ? err.message : 'Error');
+    });
+  }
+  addToInterested(): void {
+    this.userService.applyInterested({ interestedUserId: this.partnerId }).subscribe(res => {
+      this.showToast('Successfully Added to Intersted')
+    }, err => {
+      this.showToast(err?.message ? err.message : 'Error');
+    });
+  }
+
+  showToast(message) {
+    this.snackBar.open(message, 'OK', {
+      duration: 3000
+    });
   }
 }

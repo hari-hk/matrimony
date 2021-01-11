@@ -54,4 +54,17 @@ export class UserService {
         );
     }
 
+    public applyInterested(params): Observable<any> {
+        return this.api.get('interestedList', params);
+    }
+    public getInterestedList(): Observable<any> {
+        return this.api.get('getInterestedList');
+    }
+    public applySortList(params): Observable<any> {
+        return this.api.get('shortList', params);
+    }
+    public getSortList(params): Observable<any> {
+        return this.api.post('getShortList', params);
+    }
+
 }

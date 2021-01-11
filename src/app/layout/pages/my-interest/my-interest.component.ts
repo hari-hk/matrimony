@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
 import { Matches } from '../dashboard/models/matches.model';
 import { DashboardService } from '../dashboard/services/dashboard.service';
 
@@ -13,7 +14,7 @@ export class MyInterestComponent implements OnInit {
   loading = true;
 
   constructor(
-    private dashboardService: DashboardService,
+    private userService: UserService,
     private cdr: ChangeDetectorRef
   ) { }
 
@@ -21,12 +22,12 @@ export class MyInterestComponent implements OnInit {
     this.getMatches();
   }
   getMatches(): void {
-    this.dashboardService.getMatches().subscribe((response: any) => {
-      // this.matches = response;
+    this.userService.getInterestedList().subscribe((response: any) => {
+      this.matches = response.userDetails;
 
-      for (let index = 0; index < 20; index++) {
-        this.matches.unshift(response);
-      }
+      // for (let index = 0; index < 20; index++) {
+      //   this.matches.unshift(response);
+      // }
       console.log(this.matches);
       this.cdr.detectChanges();
       this.loading = false;

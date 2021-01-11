@@ -1,11 +1,12 @@
-import { AfterViewInit, ElementRef } from '@angular/core';
+import { AfterViewInit, ElementRef, ViewEncapsulation } from '@angular/core';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
     selector: 'app-auto-complete',
     templateUrl: 'auto-complete.component.html',
-    styleUrls: ['./auto-complete.component.scss']
+    styleUrls: ['./auto-complete.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 
 export class AutoCompleteComponent implements OnInit, AfterViewInit {

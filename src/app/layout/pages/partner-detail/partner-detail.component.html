@@ -14,10 +14,10 @@
                 Profile created by {{detail.profileCreatedBy}}
             </div>
             <div class="actions">
-                <button>Favourite</button>
-                <button>Horoscope</button>
-                <button>Interest</button>
-                <button>Call</button>
+                <button class="interest-btn" (click)="addToInterested()">Interest</button>
+                <button class="horo-btn">Horoscope</button>
+                <button class="sortlist-btn" (click)="addToSortList()">Sort List</button>
+                <button class="call-btn">Call</button>
             </div>
         </div>
     </div>
