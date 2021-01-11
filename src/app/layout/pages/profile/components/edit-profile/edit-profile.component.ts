@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
 import { AutoCompleteComponent } from 'src/app/common/components/auto-complete/auto-complete.component';
 
 import { Masters } from 'src/app/masters/masters';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.component.html',
   styleUrls: ['./edit-profile.component.scss']
 })
-export class EditProfileComponent implements OnInit {
+export class EditProfileComponent implements OnInit, OnDestroy {
 
 
   basicInfoForm: FormGroup;
@@ -27,9 +29,13 @@ export class EditProfileComponent implements OnInit {
 
   currentEditing: string;
 
+
+  subscriptions: Array<Subscription> = [];
+
   constructor(
     private fb: FormBuilder,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private userService: UserService
   ) { }
 
   ngOnInit(): void {
@@ -38,6 +44,12 @@ export class EditProfileComponent implements OnInit {
     this.initProffessionForm();
     this.initFamilyForm();
     this.initOtherForm();
+    this.userService.getProfile();
+    this.getProfileDetails();
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
   initBasicForm(): void {
@@ -45,7 +57,7 @@ export class EditProfileComponent implements OnInit {
       name: ['', Validators.compose([Validators.required])],
       mobile: ['', Validators.compose([Validators.required])],
       email: ['', Validators.compose([Validators.required])],
-      about: ['', Validators.compose([Validators.required])],
+      about: ['', Validators.compose([Validators.pattern('')])],
       maritalStatus: [this.maritalStatus && this.maritalStatus[0]?.id, Validators.compose([Validators.required])],
     });
   }
@@ -109,6 +121,10 @@ export class EditProfileComponent implements OnInit {
   }
 
   controlForm(formGroup: string): void {
+    if (this.currentEditing === formGroup) {
+      this.currentEditing = '';
+      return;
+    }
     this.currentEditing = formGroup;
   }
 
@@ -128,7 +144,7 @@ export class EditProfileComponent implements OnInit {
   openAutoComplete(form, control): void {
     const dialogRef = this.dialog.open(AutoCompleteComponent, {
       width: '320px',
-      data: this.getPopUpTitles(control)
+      data: this.getPopUpTitles(control),
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
@@ -140,14 +156,9 @@ export class EditProfileComponent implements OnInit {
   getPopUpTitles(control): any {
     const data = {
       title: '',
-      list: []
+      list: [],
+      multiple: false
     };
-
-    // gowthram: ['', Validators.compose([Validators.required])],
-    // rasi: ['', Validators.compose([Validators.required])],
-    // star: ['', Validators.compose([Validators.required])],
-    // height: ['', Validators.compose([Validators.required])],
-    // weight: ['', Validators.compose([Validators.required])],
     switch (control) {
       case 'motherTongue':
         data.title = 'Mother Tongue';
@@ -167,22 +178,39 @@ export class EditProfileComponent implements OnInit {
           };
         });
         break;
-      case 'subCaste':
-        data.title = 'Sub Caste';
-        data.list = new Masters().dhosam.map(el => {
-          return {
-            name: el.name,
-            id: el.id
-          };
-        });
-        break;
 
       default:
         return data;
     }
     return data;
-
-
   }
 
+  getProfileDetails(): void {
+    this.subscriptions.push(this.userService.profileDetail.subscribe(response => {
+      if (!response) {
+        return;
+      }
+      this.setBasicForm(response);
+      console.log(response);
+    }));
+  }
+  setBasicForm(data): void {
+    this.bif.name.setValue(data.Name);
+    this.bif.mobile.setValue(data.mobile);
+    this.bif.email.setValue(data.email);
+    this.bif.about.setValue(data.aboutMe);
+    this.bif.maritalStatus.setValue(data.maritalStaus);
+  }
+  setSelfForm(): void {
+
+  }
+  setProffessionForm(): void {
+
+  }
+  setFamilyForm(): void {
+
+  }
+  setOtherForm(): void {
+
+  }
 }

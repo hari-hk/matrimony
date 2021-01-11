@@ -12,13 +12,18 @@
 
 <mat-dialog-content class="mat-typography">
     <div class="list">
-        <div class="item" *ngFor="let item of list" (click)="closeDialog(item.id)">
+        <div class="item" *ngFor="let item of list; let i=index" [class.selected]="item.selected"
+            (click)="selectItem(item.id,i)">
             {{item.name}}
         </div>
-
         <div class="no-data" *ngIf="list.length===0">
             <img src="../../../../assets/images/img/empty.png" alt="no data" srcset="">
             <p>No Data Found</p>
         </div>
     </div>
+
 </mat-dialog-content>
+
+<mat-dialog-actions align="center">
+    <button mat-button (click)="submitSelected()">Select</button>
+</mat-dialog-actions>

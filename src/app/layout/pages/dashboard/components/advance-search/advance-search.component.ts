@@ -81,7 +81,11 @@ export class AdvanceSearchComponent implements OnInit {
   }
 
   getPopUpTitles(control): any {
-    const data: any = {};
+    const data: any = {
+      title: '',
+      list: [],
+      multiple: false
+    };
     switch (control) {
       case 'ageFrom':
         data.title = 'Age From';
@@ -119,14 +123,17 @@ export class AdvanceSearchComponent implements OnInit {
       case 'subcaste':
         data.title = 'Select Subcaste';
         data.list = this.subcaste;
+        data.multiple = true;
         break;
       case 'star':
         data.title = 'Select Star';
         data.list = this.star;
+        data.multiple = true;
         break;
       case 'dosham':
         data.title = 'Select Dhosham';
         data.list = this.dhosam;
+        data.multiple = true;
         break;
       case 'occupation':
         data.title = 'Select Occupation';

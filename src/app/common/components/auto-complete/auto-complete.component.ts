@@ -20,7 +20,7 @@ export class AutoCompleteComponent implements OnInit, AfterViewInit {
         public dialogRef: MatDialogRef<any>) { }
 
     ngOnInit(): void {
-        this.list = this.data.list;
+        this.list = this.data.multiple ? this.data.list.map(el => { el.selected = false; return el; }) : this.data.list;
     }
     ngAfterViewInit(): void {
         setTimeout(() => {
@@ -37,6 +37,20 @@ export class AutoCompleteComponent implements OnInit, AfterViewInit {
                 : this.data.list;
         }, 700);
     }
+
+    selectItem(id, idx): void {
+        if (this.data.multiple) {
+            this.list[idx].selected = !this.list[idx].selected;
+        } else {
+            this.closeDialog(id);
+        }
+    }
+
+    submitSelected(): void {
+        const ids = this.data.list.filter(el => el.selected).map(el => el.id);
+        this.closeDialog(ids);
+    }
+
     closeDialog(data): void {
         this.dialogRef.close(data);
     }

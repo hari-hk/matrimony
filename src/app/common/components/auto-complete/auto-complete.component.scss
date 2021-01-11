@@ -40,6 +40,11 @@
             color: #ffffff;
         }
     }
+    .selected {
+        background-color: var(--primary) !important;
+        color: #ffffff;
+        border-bottom: 1px solid #ffffff;
+    }
 }
 
 .no-data {

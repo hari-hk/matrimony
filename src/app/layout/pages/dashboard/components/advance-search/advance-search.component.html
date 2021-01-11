@@ -43,9 +43,12 @@
         </div>
         <div class="f-group select-guard" (click)="openAutoComplete('subcaste')">
             <label for="subcaste">Sub caste</label>
-            <select name="subcaste" id="subcaste" [(ngModel)]="filterData.subcaste" disabled>
+            <!-- <select name="subcaste" id="subcaste" [(ngModel)]="filterData.subcaste" disabled multiple>
                 <option *ngFor="let item of subcaste" [value]="item.id">{{item.name}}</option>
-            </select>
+            </select> -->
+            <mat-select [(ngModel)]="filterData.subcaste" multiple disabled>
+                <mat-option *ngFor="let item of subcaste" [value]="item.id">{{item.name}}</mat-option>
+            </mat-select>
         </div>
         <div class="f-group select-guard" (click)="openAutoComplete('star')">
             <label for="star">Star</label>
@@ -78,5 +81,4 @@
         <button class="cancel-btn" mat-button mat-dialog-close>Cancel</button>
         <button class="search-btn" mat-button mat-dialog-close>Apply Filter</button>
     </div>
-
 </mat-dialog-actions>
