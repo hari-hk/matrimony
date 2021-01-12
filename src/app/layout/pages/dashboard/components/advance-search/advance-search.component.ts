@@ -147,9 +147,7 @@ export class AdvanceSearchComponent implements OnInit {
       default:
         break;
     }
-
     return data;
-
   }
 
 }

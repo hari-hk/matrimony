@@ -36,6 +36,10 @@ export class Masters {
         { id: 12, name: 'Pisces' },
     ];
 
+    public gowthram = [
+        { id: 2, name: 'Shiva' }
+    ];
+
     public star = [
         { id: 1, name: 'Asuvini' },
         { id: 2, name: 'Bharani' },
@@ -71,17 +75,6 @@ export class Masters {
         { name: 'Fit', id: 'Fit' },
         { name: 'Fat', id: 'Fat' },
     ];
-
-    // public languages = [
-    //   { id: 1, selected: false, language: 'Tamil' },
-    //   { id: 1, selected: false, language: 'Malayalam' },
-    //   { id: 1, selected: false, language: 'Kannadam' },
-    //   { id: 1, selected: false, language: 'Telugu' },
-    //   { id: 1, selected: false, language: 'English' },
-    //   { id: 1, selected: false, language: 'Hindi' },
-    //   // 'Tamil', 'Malayalam','Kannadam','Telugu','English','Hindi'
-    // ]
-
 
     public oldLanguages = [
         'Tamil', 'Malayalam', 'Kannadam', 'Telugu', 'English', 'Hindi'
