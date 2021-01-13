@@ -1,6 +1,62 @@
 <div class="analyt">
     <div class="tab-detail">
         <p>Family Information </p>
-        <button mat-button>Edit</button>
+        <button (click)="togleFormMode()" mat-button>
+            {{formOnEdit?'Save':'Edit'}}
+        </button>
     </div>
+
+    <form [formGroup]="familyInfoForm">
+        <div class="button-form">
+            <p>Family Type</p>
+            <input class="d-none" formControlName="familyType" type="input" disabled readonly>
+            <div class="items">
+                <button type="button" *ngFor="let item of familyType" [disabled]="!formOnEdit"
+                    [class.active]="fif?.familyType?.value===item.id"
+                    (click)="updateButtonControl('familyInfoForm','familyType',item.id)">{{item.name}}</button>
+            </div>
+        </div>
+        <div class="button-form">
+            <hr>
+            <p>Family Status</p>
+            <input class="d-none" formControlName="familyStatus" type="input" disabled readonly>
+            <div class="items">
+                <button type="button" *ngFor="let item of familyStatus" [disabled]="!formOnEdit"
+                    [class.active]="fif?.familyStatus?.value===item.id"
+                    (click)="updateButtonControl('familyInfoForm','familyStatus',item.id)">{{item.name}}</button>
+            </div>
+        </div>
+        <div class="f-group" (click)="openAutoComplete('familyInfoForm','fatherOccupation')">
+            <label for="fatherOccupation">Father Occupation</label>
+            <mat-select name="fatherOccupation" id="fatherOccupation" formControlName="fatherOccupation"
+                [class.error]="fif?.fatherOccupation?.invalid && fif?.fatherOccupation?.touched" readonly disabled>
+                <mat-option *ngFor="let item of occupation" [value]="item.name">{{item.name}}</mat-option>
+            </mat-select>
+        </div>
+        <div class="button-form">
+            <hr>
+            <p>Mother Occupation</p>
+            <input class="d-none" formControlName="motherOccupation" type="input" disabled readonly>
+            <div class="items">
+                <button type="button" *ngFor="let item of motherOccupation" [disabled]="!formOnEdit"
+                    [class.active]="fif?.motherOccupation?.value===item.id"
+                    (click)="updateButtonControl('familyInfoForm','motherOccupation',item.id)">{{item.name}}</button>
+            </div>
+        </div>
+        <div class="f-group">
+            <label for="brothers">Brothers</label>
+            <input type="tel" name="brothers" id="brothers" formControlName="brothers"
+                [class.error]="fif?.brothers?.invalid && fif?.brothers?.touched" disabled>
+        </div>
+        <div class="f-group">
+            <label for="sisters">Sisters</label>
+            <input type="tel" name="sisters" id="sisters" formControlName="sisters"
+                [class.error]="fif?.sisters?.invalid && fif?.sisters?.touched" disabled>
+        </div>
+        <div class="f-group">
+            <label for="nativePlace">nativePlace</label>
+            <input type="tel" name="nativePlace" id="nativePlace" formControlName="nativePlace"
+                [class.error]="fif?.nativePlace?.invalid && fif?.nativePlace?.touched" disabled>
+        </div>
+    </form>
 </div>
