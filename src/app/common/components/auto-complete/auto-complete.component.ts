@@ -59,8 +59,7 @@ export class AutoCompleteComponent implements OnInit, AfterViewInit {
         this.dialogRef.close(data);
     }
 
-    public trackByFn(index, item) {
-        if (!item) return null;
-        return item.id;
+    public trackByFn(index, item): any {
+        return item ? item.id : null;
     }
 }
