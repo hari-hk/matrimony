@@ -5,20 +5,31 @@
             <p>Edit Profile</p>
         </div>
     </div>
-    <div class="row-analyt">
-        <div class="duo-col">
+    <div class="row d-none d-md-flex">
+        <div class="col-md-6">
             <app-basic-info></app-basic-info>
-        </div>
-        <div class="duo-col">
-            <app-self-info></app-self-info>
-        </div>
-        <div class="duo-col">
             <app-proffessional-info></app-proffessional-info>
+            <app-other-info></app-other-info>
         </div>
-        <div class="duo-col">
+        <div class="col-md-6">
+            <app-self-info></app-self-info>
             <app-family-info></app-family-info>
         </div>
-        <div class="duo-col">
+    </div>
+    <div class="row d-md-none d-flex">
+        <div class="col-md-6">
+            <app-basic-info></app-basic-info>
+        </div>
+        <div class="col-md-6">
+            <app-self-info></app-self-info>
+        </div>
+        <div class="col-md-6">
+            <app-proffessional-info></app-proffessional-info>
+        </div>
+        <div class="col-md-6">
+            <app-family-info></app-family-info>
+        </div>
+        <div class="col-md-6">
             <app-other-info></app-other-info>
         </div>
     </div>
