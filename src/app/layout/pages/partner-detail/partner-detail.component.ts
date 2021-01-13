@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -8,7 +8,8 @@ import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-partner-detail',
   templateUrl: './partner-detail.component.html',
-  styleUrls: ['./partner-detail.component.scss']
+  styleUrls: ['./partner-detail.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PartnerDetailComponent implements OnInit {
 
@@ -20,7 +21,8 @@ export class PartnerDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     public userService: UserService,
-    private snackBar: MatSnackBar) {
+    private snackBar: MatSnackBar,
+    private cdr: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
@@ -37,7 +39,11 @@ export class PartnerDetailComponent implements OnInit {
     this.userService.getPartnerDetail(this.partnerId).subscribe((response: Partner) => {
       this.detail = response;
       this.loading = false;
-    }, err => { this.loading = false; });
+      this.cdr.detectChanges();
+    }, err => {
+      this.loading = false;
+      this.cdr.detectChanges();
+    });
   }
 
   addToSortList(): void {
