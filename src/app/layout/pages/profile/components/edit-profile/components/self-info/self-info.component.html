@@ -1,0 +1,82 @@
+<div class="analyt">
+    <div class="tab-detail">
+        <p>Self Information </p>
+        <button (click)="togleFormMode()" mat-button>
+            {{formOnEdit?'Save':'Edit'}}
+        </button>
+    </div>
+    <form [formGroup]="selfInfoForm">
+        <div class="f-group" (click)="openAutoComplete('selfInfoForm','motherTongue')">
+            <label for="motherTongue">Mother Tongue</label>
+            <mat-select name="motherTongue" id="motherTongue" formControlName="motherTongue"
+                [class.error]="sif?.motherTongue?.invalid && sif?.motherTongue?.touched" readonly disabled>
+                <mat-option *ngFor="let item of languages" [value]="item.name">{{item.name}}</mat-option>
+            </mat-select>
+        </div>
+        <div class="f-group" (click)="openAutoComplete('selfInfoForm','subCaste')">
+            <label for="subCaste">Sub Caste</label>
+            <input formControlName="subCaste" type="text" id="subCaste"
+                [class.error]="sif?.subCaste?.invalid && sif?.subCaste?.touched" readonly>
+        </div>
+        <div class="f-group" (click)="openAutoComplete('selfInfoForm','gowthram')">
+            <label for="gowthram">Gowthram</label>
+            <mat-select name="gowthram" id="gowthram" formControlName="gowthram"
+                [class.error]="sif?.gowthram?.invalid && sif?.gowthram?.touched" readonly disabled>
+                <mat-option *ngFor="let item of gowthram" [value]="item.name">{{item.name}}</mat-option>
+            </mat-select>
+        </div>
+        <div class="f-group" (click)="openAutoComplete('selfInfoForm','rasi')">
+            <label for="rasi">Rasi</label>
+            <mat-select name="rasi" id="rasi" formControlName="rasi"
+                [class.error]="sif?.rasi?.invalid && sif?.rasi?.touched" readonly disabled>
+                <mat-option *ngFor="let item of rasi" [value]="item.name">{{item.name}}</mat-option>
+            </mat-select>
+        </div>
+        <div class="f-group" (click)="openAutoComplete('selfInfoForm','star')">
+            <label for="star">Star</label>
+            <mat-select name="star" id="star" formControlName="star"
+                [class.error]="sif?.star?.invalid && sif?.star?.touched" disabled readonly>
+                <mat-option *ngFor="let item of star" [value]="item.name">{{item.name}}</mat-option>
+            </mat-select>
+        </div>
+
+        <div class="f-group" (click)="openAutoComplete('selfInfoForm','dhosam')">
+            <label for="Dhosam">Dhosam</label>
+            <mat-select formControlName="dhosam" [class.error]="sif?.dhosam?.invalid && sif?.dhosam?.touched" multiple
+                disabled>
+                <mat-option *ngFor="let item of dhosam" [value]="item.id">{{item.name}}</mat-option>
+            </mat-select>
+        </div>
+
+        <div class="button-form">
+            <hr>
+            <p>Body Type</p>
+            <input class="d-none" formControlName="bodyType" type="input" disabled readonly>
+            <div class="items">
+                <button type="button" *ngFor="let item of bodyType" [disabled]="!formOnEdit"
+                    [class.active]="sif?.bodyType?.value===item.id"
+                    (click)="updateButtonControl('selfInfoForm','bodyType',item.id)">{{item.name}}</button>
+            </div>
+        </div>
+        <div class="f-group" (click)="openAutoComplete('selfInfoForm','height')">
+            <label for="height">Height</label>
+            <mat-select name="height" id="height" formControlName="height"
+                [class.error]="sif?.height?.invalid && sif?.height?.touched" readonly disabled>
+                <mat-option *ngFor="let item of height" [value]="item.id">{{item.name}}</mat-option>
+            </mat-select>
+        </div>
+        <div class="f-group" (click)="openAutoComplete('selfInfoForm','weight')">
+            <label for="weight">Weight</label>
+            <mat-select [class.error]="sif?.weight?.invalid && sif?.weight?.touched" formControlName="weight" disabled>
+                <mat-option *ngFor="let item of weight" [value]="item.id">{{item.name}}</mat-option>
+            </mat-select>
+        </div>
+        <div class="f-group" (click)="openAutoComplete('selfInfoForm','languagesKnown')">
+            <label for="languagesKnown">Language Known</label>
+            <mat-select [class.error]="sif?.languagesKnown?.invalid && sif?.languagesKnown?.touched"
+                formControlName="languagesKnown" multiple disabled>
+                <mat-option *ngFor="let item of languages" [value]="item.name">{{item.name}}</mat-option>
+            </mat-select>
+        </div>
+    </form>
+</div>

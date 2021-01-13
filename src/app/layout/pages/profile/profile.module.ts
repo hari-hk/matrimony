@@ -9,7 +9,13 @@ import { ViewProfileComponent } from './components/view-profile/view-profile.com
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { EditPartnerProfileComponent } from './components/edit-partner-profile/edit-partner-profile.component';
+import { BasicInfoComponent } from './components/edit-profile/components/basic-info/basic-info.component';
+import { SelfInfoComponent } from './components/edit-profile/components/self-info/self-info.component';
+import { ProffessionalInfoComponent } from './components/edit-profile/components/proffessional-info/proffessional-info.component';
+import { FamilyInfoComponent } from './components/edit-profile/components/family-info/family-info.component';
+import { OtherInfoComponent } from './components/edit-profile/components/other-info/other-info.component';
 
+import { ProfileService } from './services/profile.services';
 
 const routes: Routes = [
   {
@@ -29,13 +35,19 @@ const routes: Routes = [
     ViewProfileComponent,
     EditProfileComponent,
     ChangePasswordComponent,
-    EditPartnerProfileComponent],
+    EditPartnerProfileComponent,
+    BasicInfoComponent,
+    SelfInfoComponent,
+    ProffessionalInfoComponent,
+    FamilyInfoComponent,
+    OtherInfoComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     SharedModule,
     ReactiveFormsModule,
     MatStepperModule
-  ]
+  ],
+  providers: [ProfileService]
 })
 export class ProfileModule { }

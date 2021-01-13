@@ -1,0 +1,44 @@
+<div class="analyt">
+    <div class="tab-detail">
+        <p>Profession Information </p>
+        <button mat-button>Edit</button>
+    </div>
+    <form [formGroup]="proffessionInfoForm">
+        <div class="f-group" (click)="openAutoComplete('proffessionInfoForm','higherEducation')">
+            <label for="higherEducation">Higher Education</label>
+            <mat-select name="higherEducation" id="higherEducation" formControlName="higherEducation"
+                [class.error]="pif?.higherEducation?.invalid && pif?.higherEducation?.touched" readonly disabled>
+                <mat-option *ngFor="let item of education" [value]="item.name">{{item.name}}</mat-option>
+            </mat-select>
+        </div>
+        <div class="f-group" (click)="openAutoComplete('proffessionInfoForm','employedIn')">
+            <label for="employedIn">Employed In</label>
+            <mat-select name="employedIn" id="employedIn" formControlName="employedIn"
+                [class.error]="pif?.employedIn?.invalid && pif?.employedIn?.touched" readonly disabled>
+                <mat-option *ngFor="let item of employedIn" [value]="item.id">{{item.name}}</mat-option>
+            </mat-select>
+        </div>
+        <div class="f-group" (click)="openAutoComplete('proffessionInfoForm','occupation')">
+            <label for="occupation">Occupation</label>
+            <mat-select name="occupation" id="higherEducation" formControlName="occupation"
+                [class.error]="pif?.occupation?.invalid && pif?.occupation?.touched" readonly disabled>
+                <mat-option *ngFor="let item of occupation" [value]="item.id">{{item.name}}</mat-option>
+            </mat-select>
+        </div>
+        <div class="f-group" (click)="openAutoComplete('proffessionInfoForm','higherEducation')">
+            <label for="higherEducation">Higher Education</label>
+            <mat-select name="higherEducation" id="higherEducation" formControlName="higherEducation"
+                [class.error]="pif?.higherEducation?.invalid && pif?.higherEducation?.touched" readonly disabled>
+                <mat-option *ngFor="let item of education" [value]="item.id">{{item.name}}</mat-option>
+            </mat-select>
+        </div>
+        <div class="f-group" (click)="openAutoComplete('proffessionInfoForm','workLocation')">
+            <label for="location">Work Location</label>
+            <mat-select name="workLocation" id="workLocation" formControlName="workLocation"
+                [class.error]="pif?.workLocation?.invalid && pif?.workLocation?.touched" readonly disabled>
+                <mat-option *ngFor="let item of locations" [value]="item.name">{{item.name}}</mat-option>
+            </mat-select>
+        </div>
+    </form>
+
+</div>

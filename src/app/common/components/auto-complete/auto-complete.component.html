@@ -1,5 +1,4 @@
 <div mat-dialog-title class="toolbar">
-
     <div class="title-area">
         <p>{{data.title}}</p>
         <button type="button" autofocus="false" (click)="closeDialog('')" mat-icon-button>
@@ -7,12 +6,11 @@
         </button>
     </div>
     <input class="search" #search autofocus (input)="filterData($event)" type="text" placeholder="Search Here">
-
 </div>
 
 <mat-dialog-content class="mat-typography">
     <div class="list">
-        <div class="item" *ngFor="let item of list; let i=index" [class.selected]="item.selected"
+        <div class="item" *ngFor="let item of list; let i=index; trackBy: trackByFn" [class.selected]="item.selected"
             (click)="selectItem(item.id,i)">
             {{item.name}}
         </div>

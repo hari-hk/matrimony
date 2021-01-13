@@ -1,4 +1,5 @@
-import { AfterViewInit, ElementRef, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, ElementRef } from '@angular/core';
+import { ChangeDetectionStrategy } from '@angular/core';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
@@ -6,7 +7,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
     selector: 'app-auto-complete',
     templateUrl: 'auto-complete.component.html',
     styleUrls: ['./auto-complete.component.scss'],
-    encapsulation: ViewEncapsulation.None
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class AutoCompleteComponent implements OnInit, AfterViewInit {
@@ -17,7 +18,9 @@ export class AutoCompleteComponent implements OnInit, AfterViewInit {
 
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: any,
-        public dialogRef: MatDialogRef<any>) { }
+        public dialogRef: MatDialogRef<any>,
+        private cdr: ChangeDetectorRef) {
+    }
 
     ngOnInit(): void {
         this.list = this.data.multiple ? this.data.list.map(el => { el.selected = false; return el; }) : this.data.list;
@@ -35,6 +38,7 @@ export class AutoCompleteComponent implements OnInit, AfterViewInit {
             this.list = ev?.target?.value ?
                 this.data.list.filter(el => el.name.toLowerCase().includes(ev.target.value.toLowerCase()))
                 : this.data.list;
+            this.cdr.detectChanges();
         }, 700);
     }
 
@@ -53,5 +57,10 @@ export class AutoCompleteComponent implements OnInit, AfterViewInit {
 
     closeDialog(data): void {
         this.dialogRef.close(data);
+    }
+
+    public trackByFn(index, item) {
+        if (!item) return null;
+        return item.id;
     }
 }
