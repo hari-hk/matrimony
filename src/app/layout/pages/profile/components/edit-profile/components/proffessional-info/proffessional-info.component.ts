@@ -1,13 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
-import { AutoCompleteComponent } from 'src/app/common/components/auto-complete/auto-complete.component';
 import { HigherEducation } from 'src/app/masters/higher-education.master';
 import { Income } from 'src/app/masters/income.master';
 import { Masters } from 'src/app/masters/masters';
 import { Occupation } from 'src/app/masters/occupation.master';
 import { UserService } from 'src/app/services/user.service';
+import { ProfileService } from '../../../../services/profile.services';
 
 @Component({
   selector: 'app-proffessional-info',
@@ -37,12 +36,11 @@ export class ProffessionalInfoComponent implements OnInit, OnDestroy {
       id: el.name
     };
   });
-  locations = [];
 
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
-    private dialog: MatDialog
+    private profileService: ProfileService
   ) { }
 
   ngOnInit(): void {
@@ -62,6 +60,7 @@ export class ProffessionalInfoComponent implements OnInit, OnDestroy {
       annualIncome: ['', Validators.compose([Validators.required])],
       workLocation: ['', Validators.compose([Validators.required])]
     });
+    this.disableForm();
   }
   getProfileDetails(): void {
     this.subscriptions.push(this.userService.profileDetail.subscribe(response => {
@@ -79,50 +78,48 @@ export class ProffessionalInfoComponent implements OnInit, OnDestroy {
     this.pif.workLocation.setValue(data.workLocation);
   }
 
-  togleFormMode(): void {
-    this.formOnEdit = !this.formOnEdit;
-  }
-  openAutoComplete(form, control): void {
-    const dialogRef = this.dialog.open(AutoCompleteComponent, {
-      width: '320px',
-      data: this.getPopUpTitles(control),
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this[form].controls[control].setValue(result);
-      }
-    });
-  }
-  getPopUpTitles(control): any {
-    const data: any = {
-      title: '',
-      list: [],
-      multiple: false
-    };
-    switch (control) {
-      case 'occupation':
-        data.title = 'Select Occupation';
-        data.list = this.occupation;
-        break;
-      case 'annualIncome':
-        data.title = 'Select Annual Income';
-        data.list = this.annualIncome;
-        break;
-      case 'higherEducation':
-        data.title = 'Select Higher Education';
-        data.list = this.education;
-        break;
-      case 'employedIn':
-        data.title = 'Select Employed In';
-        data.list = this.employedIn;
-        break;
-      default:
-        break;
-    }
-    return data;
-  }
-
   get pif(): any {
     return this.proffessionInfoForm.controls;
+  }
+
+  togleFormMode(): void {
+    if (this.formOnEdit) {
+      this.updateProfile();
+      this.disableForm();
+    } else {
+      this.formOnEdit = true;
+      this.enableFrom();
+    }
+  }
+  disableForm(): void {
+    this.pif.higherEducation.disable();
+    this.pif.employedIn.disable();
+    this.pif.occupation.disable();
+    this.pif.annualIncome.disable();
+    this.pif.workLocation.disable();
+  }
+  enableFrom(): void {
+    this.pif.higherEducation.enable();
+    this.pif.employedIn.enable();
+    this.pif.occupation.enable();
+    this.pif.annualIncome.enable();
+    this.pif.workLocation.enable();
+  }
+
+  updateProfile(): void {
+    const params: any = {};
+    const value = this.proffessionInfoForm.value;
+    params.employedIn = value.employedIn;
+    params.highestEducation = value.higherEducation;
+    params.annualIncome = value.annualIncome;
+    params.occupation = value.occupation;
+    params.workLocation = value.workLocation;
+    this.profileService.updateProffessionalDetail(params).subscribe(() => {
+      this.userService.showToast('Successfully Updated');
+      this.formOnEdit = false;
+      this.userService.getProfile();
+    }, err => {
+      this.formOnEdit = false;
+    });
   }
 }

@@ -10,7 +10,7 @@ export class ProfileService {
     updateBasicDetail(params): Observable<any> {
         return this.api.post('editBasicDetails', params);
     }
-    updateProfileDetail(params): Observable<any> {
+    updateProffessionalDetail(params): Observable<any> {
         return this.api.post('editProfileDetails', params);
     }
     updateFamilyDetail(params): Observable<any> {
