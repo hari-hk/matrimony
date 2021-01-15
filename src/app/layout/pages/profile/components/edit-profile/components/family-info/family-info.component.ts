@@ -1,11 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
-import { AutoCompleteComponent } from 'src/app/common/components/auto-complete/auto-complete.component';
 import { Masters } from 'src/app/masters/masters';
 import { Occupation } from 'src/app/masters/occupation.master';
 import { UserService } from 'src/app/services/user.service';
+import { ProfileService } from '../../../../services/profile.services';
 
 @Component({
   selector: 'app-family-info',
@@ -17,7 +16,7 @@ export class FamilyInfoComponent implements OnInit, OnDestroy {
   familyInfoForm: FormGroup;
 
   subscriptions: Array<Subscription> = [];
-
+  detail: any = {};
 
   familyType: Array<any> = new Masters().familyType;
   familyStatus: Array<any> = new Masters().familyStatus;
@@ -32,7 +31,7 @@ export class FamilyInfoComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
-    private dialog: MatDialog) { }
+    private profileService: ProfileService) { }
 
   ngOnInit(): void {
     this.initFamilyForm();
@@ -53,6 +52,7 @@ export class FamilyInfoComponent implements OnInit, OnDestroy {
       sisters: ['', Validators.compose([Validators.required])],
       nativePlace: ['', Validators.compose([Validators.required])]
     });
+    this.disableForm();
   }
   getProfileDetails(): void {
     this.subscriptions.push(this.userService.profileDetail.subscribe(response => {
@@ -60,7 +60,7 @@ export class FamilyInfoComponent implements OnInit, OnDestroy {
         return;
       }
       console.log(response);
-
+      this.detail = response;
       this.setFormValue(response);
     }));
   }
@@ -73,42 +73,61 @@ export class FamilyInfoComponent implements OnInit, OnDestroy {
     this.fif.sisters.setValue(data.noofSisters);
     this.fif.nativePlace.setValue(data.nativePlace);
   }
-  togleFormMode(): void {
-    this.formOnEdit = !this.formOnEdit;
-  }
   updateButtonControl(form, control, value): void {
     this[form].controls[control].setValue(value);
   }
   get fif(): any {
     return this.familyInfoForm.controls;
   }
-  openAutoComplete(form, control): void {
-    const dialogRef = this.dialog.open(AutoCompleteComponent, {
-      width: '320px',
-      data: this.getPopUpTitles(control),
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        console.log(result);
-        this[form].controls[control].setValue(result);
-      }
-    });
-  }
-  getPopUpTitles(control): any {
-    const data: any = {
-      title: '',
-      list: [],
-      multiple: false
-    };
-    switch (control) {
-      case 'fatherOccupation':
-        data.title = 'Select Occupation';
-        data.list = this.occupation;
-        break;
-      default:
-        break;
+  togleFormMode(): void {
+    if (this.formOnEdit) {
+      this.updateProfile();
+      this.disableForm();
+    } else {
+      this.formOnEdit = true;
+      this.enableFrom();
     }
-    return data;
+  }
+  disableForm(): void {
+    this.fif.familyType.disable();
+    this.fif.familyStatus.disable();
+    this.fif.fatherOccupation.disable();
+    this.fif.motherOccupation.disable();
+    this.fif.brothers.disable();
+    this.fif.sisters.disable();
+    this.fif.nativePlace.disable();
+  }
+  enableFrom(): void {
+    this.fif.familyType.enable();
+    this.fif.familyStatus.enable();
+    this.fif.fatherOccupation.enable();
+    this.fif.motherOccupation.enable();
+    this.fif.brothers.enable();
+    this.fif.sisters.enable();
+    this.fif.nativePlace.enable();
+  }
+
+  updateProfile(): void {
+    const params: any = {};
+    const value = this.familyInfoForm.value;
+
+    params.parentsContactNo = this.detail.parentsContactno;
+    params.familyValue = this.detail.familyValue;
+    params.familyType = value.familyType;
+    params.familyStatus = value.familyStatus;
+    params.nativePlace = value.nativePlace;
+    params.fatherOccupation = value.fatherOccupation;
+    params.motherOccupation = value.motherOccupation;
+    params.noofBrothers = value.brothers;
+    params.noofSisters = value.sisters;
+    params.aboutFamily = '';
+    this.profileService.updateFamilyDetail(params).subscribe(() => {
+      this.userService.showToast('Successfully Updated');
+      this.formOnEdit = false;
+      this.userService.getProfile();
+    }, err => {
+      this.formOnEdit = false;
+    });
   }
 
 }
