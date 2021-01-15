@@ -23,12 +23,7 @@ export class MyInterestComponent implements OnInit {
   }
   getMatches(): void {
     this.userService.getInterestedList().subscribe((response: any) => {
-      this.matches = response.userDetails;
-
-      // for (let index = 0; index < 20; index++) {
-      //   this.matches.unshift(response);
-      // }
-      console.log(this.matches);
+      this.matches = response;
       this.cdr.detectChanges();
       this.loading = false;
     }, error => { this.loading = false; });

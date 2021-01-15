@@ -43,4 +43,17 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     }));
   }
 
+  fileChanged(element, type): void {
+    const file = element?.target?.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        console.log(reader.result);
+      };
+      reader.onerror = (error) => {
+        console.log('Error: ', error);
+      };
+    }
+  }
 }

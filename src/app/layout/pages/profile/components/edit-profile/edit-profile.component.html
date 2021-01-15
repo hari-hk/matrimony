@@ -5,6 +5,39 @@
             <p>Edit Profile</p>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-3">
+            <div class="profile-pic">
+                <img src="../../../../../../assets/images/img/dummy-profile.png" alt="">
+                <input type="file" class="d-none" (change)="fileChanged($event,'1')" #file1 id="file-selector"
+                    accept=".jpg, .jpeg, .png">
+                <button (click)="file1.click()" class="change">Change</button>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="profile-pic">
+                <img src="../../../../../../assets/images/img/dummy-profile.png" alt="">
+                <input type="file" class="d-none" #file2 id="file-selector" accept=".jpg, .jpeg, .png">
+                <button (click)="file2.click()" class="change">Upload</button>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="profile-pic">
+                <img src="../../../../../../assets/images/img/dummy-profile.png" alt="">
+                <input type="file" class="d-none" #file3 id="file-selector" accept=".jpg, .jpeg, .png">
+                <button (click)="file3.click()" class="change">Upload</button>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="profile-pic">
+                <img src="../../../../../../assets/images/img/dummy-profile.png" alt="">
+                <input type="file" class="d-none" #file4 id="file-selector" accept=".jpg, .jpeg, .png">
+                <button (click)="file4.click()" class="change">Upload</button>
+            </div>
+        </div>
+    </div>
+    <!-- Tab to computer view -->
     <div class="row d-none d-md-flex">
         <div class="col-md-6">
             <app-basic-info></app-basic-info>
@@ -16,6 +49,8 @@
             <app-family-info></app-family-info>
         </div>
     </div>
+
+    <!-- Mobile view -->
     <div class="row d-md-none d-flex">
         <div class="col-md-6">
             <app-basic-info></app-basic-info>

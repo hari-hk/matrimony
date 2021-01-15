@@ -58,9 +58,8 @@ export class RegisterComponent implements OnInit {
     params = {
       email: this.loginForm.value.email,
       mobile: this.loginForm.value.mobile
-    }
+    };
     this.authService.validateEmail(params).subscribe(response => {
-      console.log(response);
       this.loading = false;
       this.showOtpPage = true;
       this.initOtpForm();

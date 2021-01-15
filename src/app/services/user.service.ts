@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { flatMap, map, mergeAll, mergeMap, tap } from 'rxjs/operators';
 
 import { ApiService } from './api.service';
 
 
 import { Count } from '../common/models/count.model';
 import { Partner } from '../common/models/partner.model';
+import { Matches } from '../layout/pages/dashboard/models/matches.model';
 
 
 @Injectable({
@@ -58,7 +59,9 @@ export class UserService {
         return this.api.get('interestedList', params);
     }
     public getInterestedList(): Observable<any> {
-        return this.api.get('getInterestedList');
+        return this.api.get('getInterestedList').pipe(
+            map(res => res.userDetails.map(result => new Matches(result)))
+        );
     }
     public applySortList(params): Observable<any> {
         return this.api.get('shortList', params);

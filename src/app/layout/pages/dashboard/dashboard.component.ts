@@ -31,7 +31,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   initSubscriptions(): void {
     this.subscriptions.push(this.userService.profileDetail.subscribe(data => {
-      console.log(data);
       if (!!data) {
         this.details = data;
       }

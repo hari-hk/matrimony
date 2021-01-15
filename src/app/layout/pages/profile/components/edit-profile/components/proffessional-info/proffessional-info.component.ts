@@ -89,7 +89,6 @@ export class ProffessionalInfoComponent implements OnInit, OnDestroy {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log(result);
         this[form].controls[control].setValue(result);
       }
     });

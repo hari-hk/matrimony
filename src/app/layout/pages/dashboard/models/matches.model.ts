@@ -8,12 +8,12 @@ export class Matches {
     occupation: string;
     location: string;
     constructor(payload) {
-        this.name = payload.Name;
+        this.name = payload.name;
         this.age = payload.age;
         this.height = payload.height;
         this.id = payload.id;
         this.matrimonyId = payload.matrimonyId;
-        this.image = payload.imagePath + '/' + payload.profileImage;
+        this.image = payload.imagePath + '/small/' + payload.profileImage;
         this.id = payload.id;
         this.location = payload.birthPlace || '';
     }
