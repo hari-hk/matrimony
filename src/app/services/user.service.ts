@@ -77,6 +77,10 @@ export class UserService {
     public getSubCaste(id): Observable<any> {
         return this.api.get('getSubcaste', { casteId: id });
     }
+
+    public changePassword(params): Observable<any> {
+        return this.api.post('changePassword', params);
+    }
     showToast(message): void {
         this.snackBar.open(message, 'OK', {
             duration: 3000
