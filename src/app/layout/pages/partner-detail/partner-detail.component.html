@@ -1,9 +1,7 @@
 <div class="container partner" *ngIf="detail">
     <div class="row align-items-center">
         <div class="col-md-4">
-            <img [src]="detail.imagePath+'/medium/'+detail.profileImage[0]"
-                onerror="this.src='../../../../assets/images/img/dummy-profile.png';" alt="user profile"
-                class="profile-img">
+            <ng-image-slider [images]="detail.profileImages" [imagePopup]="false" #nav></ng-image-slider>
         </div>
         <div class="col-md-8 col-lg-4">
             <div class="name">{{detail.name}}</div>

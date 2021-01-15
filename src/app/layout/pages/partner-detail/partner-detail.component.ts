@@ -61,7 +61,7 @@ export class PartnerDetailComponent implements OnInit {
     });
   }
 
-  showToast(message) {
+  showToast(message): void {
     this.snackBar.open(message, 'OK', {
       duration: 3000
     });

@@ -40,7 +40,7 @@ export class Partner {
     parentsContactno: string;
     physicalStatus: string;
     profileCreatedBy: string;
-    profileImage: Array<string>;
+    profileImages: Array<string>;
     rasi: string;
     religion: string;
     smoking: string;
@@ -91,7 +91,12 @@ export class Partner {
         this.parentsContactno = payload.parentsContactno;
         this.physicalStatus = payload.physicalStatus;
         this.profileCreatedBy = payload.profileCreatedBy;
-        this.profileImage = payload.profileImage;
+        this.profileImages = payload?.profileImage?.map(el => {
+            return {
+                image: payload.imagePath + '/medium/' + el,
+                thumbImage: payload.imagePath + '/medium/' + el
+            };
+        });
         this.rasi = payload.rasi;
         this.religion = payload.religion;
         this.smoking = payload.smoking;

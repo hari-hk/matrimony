@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PartnerDetailComponent } from './partner-detail.component';
 import { RouterModule, Routes } from '@angular/router';
+import { NgImageSliderModule } from 'ng-image-slider';
 
 
 const routes: Routes = [
@@ -11,7 +12,8 @@ const routes: Routes = [
   declarations: [PartnerDetailComponent],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    NgImageSliderModule
   ]
 })
 export class PartnerDetailModule { }
