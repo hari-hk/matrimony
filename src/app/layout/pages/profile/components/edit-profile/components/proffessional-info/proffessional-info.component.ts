@@ -107,6 +107,8 @@ export class ProffessionalInfoComponent implements OnInit, OnDestroy {
   }
 
   updateProfile(): void {
+    this.formOnEdit = false;
+    this.disableForm();
     const params: any = {};
     const value = this.proffessionInfoForm.value;
     params.employedIn = value.employedIn;
@@ -116,7 +118,6 @@ export class ProffessionalInfoComponent implements OnInit, OnDestroy {
     params.workLocation = value.workLocation;
     this.profileService.updateProffessionalDetail(params).subscribe(() => {
       this.userService.showToast('Successfully Updated');
-      this.formOnEdit = false;
       this.userService.getProfile();
     }, err => {
       this.formOnEdit = false;
