@@ -108,9 +108,11 @@ export class FamilyInfoComponent implements OnInit, OnDestroy {
   }
 
   updateProfile(): void {
+    this.formOnEdit = false;
+    this.disableForm();
+
     const params: any = {};
     const value = this.familyInfoForm.value;
-
     params.parentsContactNo = this.detail.parentsContactno;
     params.familyValue = this.detail.familyValue;
     params.familyType = value.familyType;
@@ -123,7 +125,6 @@ export class FamilyInfoComponent implements OnInit, OnDestroy {
     params.aboutFamily = '';
     this.profileService.updateFamilyDetail(params).subscribe(() => {
       this.userService.showToast('Successfully Updated');
-      this.formOnEdit = false;
       this.userService.getProfile();
     }, err => {
       this.formOnEdit = false;
