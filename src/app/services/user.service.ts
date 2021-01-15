@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { flatMap, map, mergeAll, mergeMap, tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 import { ApiService } from './api.service';
 
@@ -8,6 +8,7 @@ import { ApiService } from './api.service';
 import { Count } from '../common/models/count.model';
 import { Partner } from '../common/models/partner.model';
 import { Matches } from '../layout/pages/dashboard/models/matches.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Injectable({
@@ -17,7 +18,10 @@ export class UserService {
 
     profileDetail = new BehaviorSubject(null);
 
-    constructor(private api: ApiService) {
+    constructor(
+        private api: ApiService,
+        private snackBar: MatSnackBar,
+    ) {
     }
 
     get hasToken(): boolean {
@@ -70,4 +74,9 @@ export class UserService {
         return this.api.post('getShortList', params);
     }
 
+    showToast(message): void {
+        this.snackBar.open(message, 'OK', {
+            duration: 3000
+        });
+    }
 }

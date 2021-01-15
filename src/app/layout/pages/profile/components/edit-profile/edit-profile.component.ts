@@ -56,4 +56,5 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       };
     }
   }
+
 }
