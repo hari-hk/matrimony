@@ -38,7 +38,7 @@
         <div class="button-form">
             <hr>
             <p>Physical Status</p>
-            <input class="d-none" formControlName="physicalStatus" type="input" disabled readonly>
+            <input class="d-none" formControlName="physicalStatus" type="input" readonly>
             <div class="items">
                 <button type="button" *ngFor="let item of physicalStatus" [disabled]="!formOnEdit"
                     [class.active]="oif?.physicalStatus?.value===item.id"
