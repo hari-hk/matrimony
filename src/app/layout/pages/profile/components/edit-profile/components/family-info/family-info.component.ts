@@ -125,10 +125,13 @@ export class FamilyInfoComponent implements OnInit, OnDestroy {
     params.aboutFamily = '';
     this.profileService.updateFamilyDetail(params).subscribe(() => {
       this.userService.showToast('Successfully Updated');
-      this.userService.getProfile();
+      this.refreshProfile();
     }, err => {
       this.formOnEdit = false;
     });
   }
-
+  refreshProfile(): void {
+    this.userService.getProfile().subscribe(() => {
+    });
+  }
 }

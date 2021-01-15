@@ -104,9 +104,13 @@ export class BasicInfoComponent implements OnInit, OnDestroy {
     params.aboutMe = this.basicInfoForm.value.about;
     this.profileService.updateBasicDetail(params).subscribe(() => {
       this.userService.showToast('Successfully Updated');
-      this.userService.getProfile();
+      this.refreshProfile();
     }, err => {
       this.formOnEdit = false;
+    });
+  }
+  refreshProfile(): void {
+    this.userService.getProfile().subscribe(() => {
     });
   }
 }

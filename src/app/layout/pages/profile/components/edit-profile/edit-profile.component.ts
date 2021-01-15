@@ -23,7 +23,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.userService.getProfile();
+    this.userService.getProfile().subscribe(() => { });
     this.getProfileDetails();
   }
 

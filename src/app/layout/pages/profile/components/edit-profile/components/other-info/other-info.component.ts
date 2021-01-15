@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs/internal/Subscription';
-import { AutoCompleteComponent } from 'src/app/common/components/auto-complete/auto-complete.component';
 import { Masters } from 'src/app/masters/masters';
 import { UserService } from 'src/app/services/user.service';
+import { ProfileService } from '../../../../services/profile.services';
 
 @Component({
   selector: 'app-other-info',
@@ -25,13 +24,13 @@ export class OtherInfoComponent implements OnInit {
     return {
       name: el.hobby,
       id: el.hobby
-    }
+    };
   });
 
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
-    private dialog: MatDialog
+    private profileService: ProfileService
   ) { }
 
   ngOnInit(): void {
@@ -46,6 +45,7 @@ export class OtherInfoComponent implements OnInit {
       physicalStatus: ['', Validators.compose([Validators.required])],
       hobbies: ['', Validators.compose([Validators.required])]
     });
+    this.disableForm();
   }
 
   getProfileDetails(): void {
@@ -69,35 +69,50 @@ export class OtherInfoComponent implements OnInit {
   updateButtonControl(form, control, value): void {
     this[form].controls[control].setValue(value);
   }
+
   togleFormMode(): void {
-    this.formOnEdit = !this.formOnEdit;
-  }
-  openAutoComplete(form, control): void {
-    const dialogRef = this.dialog.open(AutoCompleteComponent, {
-      width: '320px',
-      data: this.getPopUpTitles(control),
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this[form].controls[control].setValue(result);
-      }
-    });
-  }
-  getPopUpTitles(control): any {
-    const data: any = {
-      title: '',
-      list: [],
-      multiple: false
-    };
-    switch (control) {
-      case 'hobbies':
-        data.title = 'Select Hobbies';
-        data.list = this.hobbies;
-        data.multiple = true
-        break;
-      default:
-        break;
+    if (this.formOnEdit) {
+      this.updateProfile();
+      this.disableForm();
+    } else {
+      this.formOnEdit = true;
+      this.enableFrom();
     }
-    return data;
+  }
+  disableForm(): void {
+    this.oif.eatingHabit.disable();
+    this.oif.drinkingHabit.disable();
+    this.oif.smokingHabit.disable();
+    this.oif.physicalStatus.disable();
+    this.oif.hobbies.disable();
+  }
+  enableFrom(): void {
+    this.oif.eatingHabit.enable();
+    this.oif.drinkingHabit.enable();
+    this.oif.smokingHabit.enable();
+    this.oif.physicalStatus.enable();
+    this.oif.hobbies.enable();
+  }
+
+  updateProfile(): void {
+    this.formOnEdit = false;
+    this.disableForm();
+    const params: any = {};
+    const value = this.otherInfoForm.value;
+    params.food = value.eatingHabit;
+    params.smoking = value.smokingHabit;
+    params.drinking = value.drinkingHabit;
+    params.physicalStatus = value.physicalStatus;
+    params.hobby = value.hobbies;
+    this.profileService.updateHabbitDetail(params).subscribe(() => {
+      this.userService.showToast('Successfully Updated');
+      this.refreshProfile();
+    }, err => {
+      this.formOnEdit = false;
+    });
+  }
+  refreshProfile(): void {
+    this.userService.getProfile().subscribe(() => {
+    });
   }
 }

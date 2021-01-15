@@ -166,9 +166,13 @@ export class SelfInfoComponent implements OnInit, OnDestroy {
     this.profileService.updateBasicDetail(params).subscribe(() => {
       this.userService.showToast('Successfully Updated');
       this.formOnEdit = false;
-      this.userService.getProfile();
+      this.refreshProfile();
     }, err => {
       this.formOnEdit = false;
+    });
+  }
+  refreshProfile(): void {
+    this.userService.getProfile().subscribe(() => {
     });
   }
 }

@@ -118,9 +118,13 @@ export class ProffessionalInfoComponent implements OnInit, OnDestroy {
     params.workLocation = value.workLocation;
     this.profileService.updateProffessionalDetail(params).subscribe(() => {
       this.userService.showToast('Successfully Updated');
-      this.userService.getProfile();
+      this.refreshProfile();
     }, err => {
       this.formOnEdit = false;
+    });
+  }
+  refreshProfile(): void {
+    this.userService.getProfile().subscribe(() => {
     });
   }
 }
