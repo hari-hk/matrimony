@@ -74,9 +74,13 @@ export class UserService {
         return this.api.post('getShortList', params);
     }
 
+    public getSubCaste(id): Observable<any> {
+        return this.api.get('getSubcaste', { casteId: id });
+    }
     showToast(message): void {
         this.snackBar.open(message, 'OK', {
             duration: 3000
         });
     }
+
 }

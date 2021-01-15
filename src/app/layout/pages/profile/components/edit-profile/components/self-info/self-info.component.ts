@@ -1,11 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
-import { AutoCompleteComponent } from 'src/app/common/components/auto-complete/auto-complete.component';
 import { Languages } from 'src/app/masters/language.master';
 import { Masters } from 'src/app/masters/masters';
 import { UserService } from 'src/app/services/user.service';
+import { ProfileService } from '../../../../services/profile.services';
 
 @Component({
   selector: 'app-self-info',
@@ -27,20 +26,31 @@ export class SelfInfoComponent implements OnInit, OnDestroy {
     el.id = el.name;
     return el;
   });
-  languages = new Languages().languages;
+  languages = new Languages().languages.map((el: any) => {
+    el.id = el.name;
+    return el;
+  });
   dhosam = new Masters().dhosam;
   star = new Masters().star;
-  rasi = new Masters().rasi;
-  gowthram = new Masters().gowthram;
+  rasi = new Masters().rasi.map((el: any) => {
+    el.id = el.name;
+    return el;
+  });
+  gowthram = new Masters().gowthram.map((el: any) => {
+    el.id = el.name;
+    return el;
+  });
   martialStatus = [];
   subcaste = [];
 
   subscriptions: Array<Subscription> = [];
 
+  detail: any = {};
+
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
-    private dialog: MatDialog
+    private profileService: ProfileService
   ) { }
 
   ngOnInit(): void {
@@ -64,6 +74,7 @@ export class SelfInfoComponent implements OnInit, OnDestroy {
       weight: ['', Validators.compose([Validators.required])],
       languagesKnown: ['', Validators.compose([Validators.required])]
     });
+    this.disableForm();
   }
   get sif(): any {
     return this.selfInfoForm.controls;
@@ -73,10 +84,16 @@ export class SelfInfoComponent implements OnInit, OnDestroy {
       if (!response) {
         return;
       }
+      this.detail = response;
       this.setSelfForm(response);
+      this.getSubCaste(response.caste);
     }));
   }
-
+  getSubCaste(id): void {
+    this.userService.getSubCaste(res => {
+      console.log(res);
+    });
+  }
   setSelfForm(data): void {
     this.sif.motherTongue.setValue(data.motherTongue);
     this.sif.subCaste.setValue(data.subCaste);
@@ -90,94 +107,68 @@ export class SelfInfoComponent implements OnInit, OnDestroy {
     this.sif.languagesKnown.setValue(data.languagesKnown);
   }
 
-
-  openAutoComplete(form, control): void {
-    const dialogRef = this.dialog.open(AutoCompleteComponent, {
-      width: '320px',
-      data: this.getPopUpTitles(control),
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        console.log(result);
-        this[form].controls[control].setValue(result);
-      }
-    });
-  }
-
-  getPopUpTitles(control): any {
-    const data: any = {
-      title: '',
-      list: [],
-      multiple: false
-    };
-    switch (control) {
-      case 'motherTongue':
-        data.title = 'Select Mother Tongue';
-        data.list = this.languages.map((el: any) => {
-          el.id = el.name;
-          return el;
-        });
-        break;
-      case 'subcaste':
-        data.title = 'Select Subcaste';
-        data.list = this.subcaste;
-        break;
-      case 'gowthram':
-        data.title = 'Select Gowthram';
-        data.list = this.gowthram.map((el: any) => {
-          el.id = el.name;
-          return el;
-        });
-        break;
-      case 'star':
-        data.title = 'Select Star';
-        data.list = this.star.map((el: any) => {
-          el.id = el.name;
-          return el;
-        });
-        break;
-      case 'rasi':
-        data.title = 'Select Rasi';
-        data.list = this.rasi.map((el: any) => {
-          el.id = el.name;
-          return el;
-        });
-        break;
-      case 'dhosam':
-        data.title = 'Select Dhosham';
-        data.list = this.dhosam;
-        data.multiple = true;
-        break;
-
-      case 'height':
-        data.title = 'Select Height';
-        data.list = this.height;
-        break;
-      case 'weight':
-        data.title = 'Select Weight';
-        data.list = this.weight;
-        break;
-      case 'maritalStatus':
-        data.title = 'Select Martial Status';
-        data.list = this.martialStatus;
-        break;
-      case 'languagesKnown':
-        data.title = 'Select Mother Tongue';
-        data.list = this.languages.map((el: any) => {
-          el.id = el.name;
-          return el;
-        });
-        data.multiple = true;
-        break;
-      default:
-        break;
-    }
-    return data;
-  }
   updateButtonControl(form, control, value): void {
     this[form].controls[control].setValue(value);
   }
   togleFormMode(): void {
-    this.formOnEdit = !this.formOnEdit;
+    if (this.formOnEdit) {
+      this.updateProfile();
+      this.disableForm();
+    } else {
+      this.formOnEdit = true;
+      this.enableFrom();
+    }
+  }
+  disableForm(): void {
+    this.sif.motherTongue.disable();
+    this.sif.subCaste.disable();
+    this.sif.gowthram.disable();
+    this.sif.rasi.disable();
+    this.sif.star.disable();
+    this.sif.dhosam.disable();
+    this.sif.bodyType.disable();
+    this.sif.height.disable();
+    this.sif.weight.disable();
+    this.sif.languagesKnown.disable();
+  }
+  enableFrom(): void {
+    this.sif.motherTongue.enable();
+    this.sif.subCaste.enable();
+    this.sif.gowthram.enable();
+    this.sif.rasi.enable();
+    this.sif.star.enable();
+    this.sif.dhosam.enable();
+    this.sif.bodyType.enable();
+    this.sif.height.enable();
+    this.sif.weight.enable();
+    this.sif.languagesKnown.enable();
+  }
+  updateProfile(): void {
+    const params: any = {};
+    params.maritalStatus = this.detail.maritalStaus;
+    params.maritalChild = this.detail.birthTime;
+    params.country = this.detail.country;
+    params.birth_time = this.detail.birthTime;
+    params.birth_place = this.detail.birthPlace;
+    params.aboutMe = this.detail.aboutMe;
+
+    const value = this.selfInfoForm.value;
+
+    params.height = value.height;
+    params.weight = value.weight;
+    params.maritalChild = this.detail.maritalChildStaus;
+    params.bodyType = value.bodyType;
+    params.languagesKnown = value.languagesKnown;
+    params.gothram = value.gowthram;
+    params.star = value.star;
+    params.rasi = value.rasi;
+    params.dosham = value.dhosam;
+    this.profileService.updateBasicDetail(params).subscribe(() => {
+      this.userService.showToast('Successfully Updated');
+      this.formOnEdit = false;
+      this.userService.getProfile();
+    }, err => {
+      this.formOnEdit = false;
+    });
   }
 }
