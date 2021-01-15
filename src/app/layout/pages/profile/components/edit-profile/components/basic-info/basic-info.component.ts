@@ -99,10 +99,10 @@ export class BasicInfoComponent implements OnInit, OnDestroy {
     params.birth_time = this.detail.birthTime;
     params.birth_place = this.detail.birthPlace;
     params.aboutMe = this.basicInfoForm.value.about;
-    this.profileService.updateBasicDetail(params).subscribe(response => {
-      console.log(response);
+    this.profileService.updateBasicDetail(params).subscribe(() => {
       this.userService.showToast('Successfully Updated');
       this.formOnEdit = false;
+      this.userService.getProfile();
     }, err => {
       this.formOnEdit = false;
     });
