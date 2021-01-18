@@ -2,6 +2,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -24,7 +25,8 @@ export class ForgotPasswordComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private router: Router) { }
+    private router: Router,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -35,7 +37,7 @@ export class ForgotPasswordComponent implements OnInit {
     });
   }
 
-  get f() {
+  get f(): any {
     return this.forgotPassword.controls;
   }
   submit(): void {
@@ -43,11 +45,19 @@ export class ForgotPasswordComponent implements OnInit {
       this.forgotPassword.markAllAsTouched();
       return;
     }
-    this.router.navigate(['/'])
+    const params = {
+      mobile: this.forgotPassword.value.phone,
+      password: ''
+    };
+    this.authService.forgotPassword(params).subscribe(response => {
+      console.log(response);
+
+    });
+    // this.router.navigate(['/']);
   }
 
   openLogin(): void {
-    this.router.navigate(['/auth'])
+    this.router.navigate(['/auth']);
   }
 
 }

@@ -18,5 +18,8 @@ export class AuthService {
   public validateEmail(params: RegisterValidate): Observable<any> {
     return this.api.post('validateEmail', params);
   }
+  public forgotPassword(params: any): Observable<any> {
+    return this.api.post('forgotPassword', params);
+  }
 
 }
