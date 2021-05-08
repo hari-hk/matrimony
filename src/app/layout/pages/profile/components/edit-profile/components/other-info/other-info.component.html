@@ -1,0 +1,56 @@
+<div class="analyt">
+    <div class="tab-detail">
+        <p>Other Information </p>
+        <button (click)="togleFormMode()" mat-button>
+            {{formOnEdit?'Save':'Edit'}}
+        </button>
+    </div>
+    <form [formGroup]="otherInfoForm">
+        <div class="button-form">
+            <p>Eating Habit</p>
+            <input class="d-none" formControlName="eatingHabit" type="input" readonly>
+            <div class="items">
+                <button type="button" *ngFor="let item of eatingHabits" [disabled]="!formOnEdit"
+                    [class.active]="oif?.eatingHabit?.value===item.id"
+                    (click)="updateButtonControl('otherInfoForm','eatingHabit',item.id)">{{item.name}}</button>
+            </div>
+        </div>
+        <div class="button-form">
+            <hr>
+            <p>Drinking Habit</p>
+            <input class="d-none" formControlName="drinkingHabit" type="input" readonly>
+            <div class="items">
+                <button type="button" *ngFor="let item of drinkingHabbit" [disabled]="!formOnEdit"
+                    [class.active]="oif?.drinkingHabit?.value===item.id"
+                    (click)="updateButtonControl('otherInfoForm','drinkingHabit',item.id)">{{item.name}}</button>
+            </div>
+        </div>
+        <div class="button-form">
+            <hr>
+            <p>Smoking Habit</p>
+            <input class="d-none" formControlName="smokingHabit" type="input" readonly>
+            <div class="items">
+                <button type="button" *ngFor="let item of smokingHabbit" [disabled]="!formOnEdit"
+                    [class.active]="oif?.smokingHabit?.value===item.id"
+                    (click)="updateButtonControl('otherInfoForm','smokingHabit',item.id)">{{item.name}}</button>
+            </div>
+        </div>
+        <div class="button-form">
+            <hr>
+            <p>Physical Status</p>
+            <input class="d-none" formControlName="physicalStatus" type="input" readonly>
+            <div class="items">
+                <button type="button" *ngFor="let item of physicalStatus" [disabled]="!formOnEdit"
+                    [class.active]="oif?.physicalStatus?.value===item.id"
+                    (click)="updateButtonControl('otherInfoForm','physicalStatus',item.id)">{{item.name}}</button>
+            </div>
+        </div>
+        <div class="f-group">
+            <label for="hobbies">Hobbies</label>
+            <mat-select name="hobbies" id="hobbies" formControlName="hobbies"
+                [class.error]="oif?.hobbies?.invalid && oif?.hobbies?.touched" multiple>
+                <mat-option *ngFor="let item of hobbies" [value]="item.name">{{item.name}}</mat-option>
+            </mat-select>
+        </div>
+    </form>
+</div>

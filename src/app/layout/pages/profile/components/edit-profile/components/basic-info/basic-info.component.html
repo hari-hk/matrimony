@@ -1,0 +1,42 @@
+<div class="analyt">
+    <div class="tab-detail">
+        <p>Basic Information </p>
+        <button (click)="togleFormMode()" mat-button>
+            {{formOnEdit?'Save':'Edit'}}
+        </button>
+    </div>
+    <form [formGroup]="basicInfoForm">
+        <div class="f-group">
+            <label for="name">Name</label>
+            <input formControlName="name" type="text" id="name" [class.error]="bif?.name?.invalid && bif?.name?.touched"
+                readonly>
+        </div>
+        <div class="f-group">
+            <label for="name">Mobile</label>
+            <input formControlName="mobile" type="text" id="mobile"
+                [class.error]="bif?.mobile?.invalid && bif?.mobile?.touched" readonly>
+        </div>
+        <div class="f-group">
+            <label for="name">email</label>
+            <input formControlName="email" type="text" id="email"
+                [class.error]="bif?.email?.invalid && bif?.email?.touched" readonly>
+        </div>
+        <div class="f-group">
+            <label class="fill-label" for="name">About Me</label>
+            <textarea formControlName="about" type="text" id="about"
+                [class.error]="bif?.about?.invalid && bif?.about?.touched">
+                </textarea>
+        </div>
+        <div class="button-form">
+            <hr>
+            <p>Marital Status</p>
+            <input class="d-none" formControlName="maritalStatus" type="input" readonly>
+            <div class="items">
+                <button type="button" *ngFor="let item of maritalStatus" [disabled]="!formOnEdit"
+                    [class.active]="bif?.maritalStatus?.value===item.id"
+                    (click)="updateButtonControl('basicInfoForm','maritalStatus',item.id)">{{item.name}}</button>
+            </div>
+        </div>
+    </form>
+
+</div>

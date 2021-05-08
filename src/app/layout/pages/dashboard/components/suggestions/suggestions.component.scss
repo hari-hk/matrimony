@@ -1,0 +1,65 @@
+.suggesions {
+    padding: 10px;
+    position: relative;
+    .title {
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 10px;
+    }
+    .list {
+        height: calc(100vh - 170px);
+        overflow-y: scroll;
+    }
+    .customer-card {
+        padding: 10px 14px;
+        margin: 15px 0;
+        background: #ffffff;
+        border-radius: 10px;
+        cursor: pointer;
+
+        &:hover {
+            background: #eaeaea;
+        }
+
+        &:first-child {
+            margin: 0 !important;
+        }
+        .id {
+            color: var(--primary);
+            margin: 10px 0;
+            font-size: 13px;
+        }
+        .name {
+            font-size: 17px;
+            color: #444444;
+        }
+        .details {
+            font-size: 14px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            color: #444444;
+        }
+        .occupation {
+            font-size: 16px;
+            color: #444444;
+        }
+
+        .profile-pic {
+            height: 60px;
+            width: 60px;
+        }
+    }
+}
+.no-data {
+    img {
+        width: 100%;
+        border-radius: 10px;
+    }
+    p {
+        color: var(--primary);
+        margin-top: 2em;
+        text-align: center;
+    }
+}

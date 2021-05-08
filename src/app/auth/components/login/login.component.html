@@ -1,0 +1,23 @@
+<div class="login" [@fadeIn]="'in'">
+    <h1 class="title">
+        Login
+    </h1>
+    <form (ngSubmit)="submit()" [formGroup]="loginForm">
+        <div class="f-group">
+            <label for="mobile">Mobile</label>
+            <input formControlName="mobile" type="tel" id="mobile" [class.error]="f.mobile.invalid && f.mobile.touched">
+        </div>
+        <div class="f-group">
+            <label for="password">Password</label>
+            <input formControlName="password" type="password" name="newPassword" id="password"
+                [class.error]="f.password.invalid && f.password.touched">
+        </div>
+        <button type="submit" [disabled]="loading">
+            <span *ngIf="!loading">Submit</span>
+            <img class="loader" *ngIf="loading" src="../../../../assets/images/loader/loader-white.gif" alt=""
+                srcset="">
+        </button>
+    </form>
+    <a href="javascript:void(0)" (click)="navigateTo('/auth/forgot')" class="forgot">Forgot Password ?</a>
+    <div class="dha" (click)="navigateTo('/auth/register')">Don't Have Account? <span>Register</span></div>
+</div>

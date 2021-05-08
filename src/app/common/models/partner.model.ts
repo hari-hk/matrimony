@@ -1,0 +1,108 @@
+export class Partner {
+    name: string;
+    aboutFamily: string;
+    aboutMe: string;
+    age: string;
+    annualIncome: string;
+    birthPlace: string;
+    birthTime: string;
+    bodyType: string;
+    caste: string;
+    country: string;
+    dob: string;
+    dosham: string;
+    drinking: string;
+    eating: string;
+    email: string;
+    employedIn: string;
+    familyStatus: string;
+    familyType: string;
+    familyValue: string;
+    fatherOccupation: Array<string>;
+    gender: string;
+    gothram: string;
+    height: string;
+    higheshEducation: string;
+    hobby: Array<string>;
+    imagePath: string;
+    languagesKnown: Array<string>;
+    maritalChildStaus: string;
+    maritalStaus: string;
+    matrimonyId: string;
+    mobile: string;
+    motherOccupation: string;
+    motherTongue: string;
+    nativePlace: string;
+    noOfBrothers: string;
+    noOfSisters: string;
+    occupation: string;
+    organization: string;
+    parentsContactno: string;
+    physicalStatus: string;
+    profileCreatedBy: string;
+    profileImages: Array<string>;
+    rasi: string;
+    religion: string;
+    smoking: string;
+    star: string;
+    subCaste: string;
+    weight: string;
+    workLocation: string;
+
+    constructor(payload) {
+        this.name = payload.Name || '';
+        this.aboutFamily = payload.aboutFamily;
+        this.aboutMe = payload.aboutMe;
+        this.age = payload.age;
+        this.annualIncome = payload.annualIncome;
+        this.birthPlace = payload.birthPlace;
+        this.birthTime = payload.birthTime;
+        this.bodyType = payload.bodyType;
+        this.caste = payload.caste;
+        this.country = payload.country;
+        this.dob = payload.dob;
+        this.dosham = payload.dosham;
+        this.drinking = payload.drinking;
+        this.eating = payload.eating;
+        this.email = payload.email;
+        this.employedIn = payload.employedIn;
+        this.familyStatus = payload.familyStatus;
+        this.familyType = payload.familyType;
+        this.familyValue = payload.familyValue;
+        this.fatherOccupation = payload.fatherOccupation;
+        this.gender = payload.gender;
+        this.gothram = payload.gothram;
+        this.height = payload.height;
+        this.higheshEducation = payload.higheshEducation;
+        this.hobby = payload.hobby;
+        this.imagePath = payload.imagePath;
+        this.languagesKnown = payload.languagesKnown;
+        this.maritalChildStaus = payload.maritalChildStaus;
+        this.maritalStaus = payload.maritalStaus;
+        this.matrimonyId = payload.matrimonyId;
+        this.mobile = payload.mobile;
+        this.motherOccupation = payload.motherOccupation;
+        this.motherTongue = payload.motherTongue;
+        this.nativePlace = payload.nativePlace;
+        this.noOfBrothers = payload.noofBrothers;
+        this.noOfSisters = payload.noofSisters;
+        this.occupation = payload.occupation;
+        this.organization = payload.organization;
+        this.parentsContactno = payload.parentsContactno;
+        this.physicalStatus = payload.physicalStatus;
+        this.profileCreatedBy = payload.profileCreatedBy;
+        this.profileImages = payload?.profileImage?.map(el => {
+            return {
+                image: payload.imagePath + '/medium/' + el,
+                thumbImage: payload.imagePath + '/medium/' + el
+            };
+        });
+        this.rasi = payload.rasi;
+        this.religion = payload.religion;
+        this.smoking = payload.smoking;
+        this.star = payload.star;
+        this.subCaste = payload.subCaste;
+        this.weight = payload.weight;
+        this.workLocation = payload.workLocation;
+    }
+}

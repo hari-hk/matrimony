@@ -1,0 +1,43 @@
+<div class="analyt">
+    <div class="tab-detail">
+        <p>Profession Information </p>
+        <button (click)="togleFormMode()" mat-button>
+            {{formOnEdit?'Save':'Edit'}}
+        </button>
+    </div>
+    <form [formGroup]="proffessionInfoForm">
+        <div class="f-group">
+            <label for="higherEducation">Higher Education</label>
+            <mat-select name="higherEducation" id="higherEducation" formControlName="higherEducation"
+                [class.error]="pif?.higherEducation?.invalid && pif?.higherEducation?.touched">
+                <mat-option *ngFor="let item of education" [value]="item.name">{{item.name}}</mat-option>
+            </mat-select>
+        </div>
+        <div class="f-group">
+            <label for="employedIn">Employed In</label>
+            <mat-select name="employedIn" id="employedIn" formControlName="employedIn"
+                [class.error]="pif?.employedIn?.invalid && pif?.employedIn?.touched">
+                <mat-option *ngFor="let item of employedIn" [value]="item.id">{{item.name}}</mat-option>
+            </mat-select>
+        </div>
+        <div class="f-group">
+            <label for="occupation">Occupation</label>
+            <mat-select name="occupation" id="higherEducation" formControlName="occupation"
+                [class.error]="pif?.occupation?.invalid && pif?.occupation?.touched">
+                <mat-option *ngFor="let item of occupation" [value]="item.id">{{item.name}}</mat-option>
+            </mat-select>
+        </div>
+        <div class="f-group">
+            <label for="higherEducation">Higher Education</label>
+            <mat-select name="higherEducation" id="higherEducation" formControlName="higherEducation"
+                [class.error]="pif?.higherEducation?.invalid && pif?.higherEducation?.touched">
+                <mat-option *ngFor="let item of education" [value]="item.id">{{item.name}}</mat-option>
+            </mat-select>
+        </div>
+        <div class="f-group">
+            <label for="location">Work Location</label>
+            <input type="text" name="workLocation" id="workLocation" formControlName="workLocation"
+                [class.error]="pif?.workLocation?.invalid && pif?.workLocation?.touched">
+        </div>
+    </form>
+</div>

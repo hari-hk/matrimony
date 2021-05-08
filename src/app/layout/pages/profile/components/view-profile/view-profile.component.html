@@ -1,0 +1,46 @@
+<div class="container profile">
+    <div class="analyt">
+        <div class="title">My Profile</div>
+        <ng-container *ngIf="user$ |async as profile; else noPic">
+            <img class="profile-img" [src]="profile.imagePath+'/medium/'+profile.profileImage"
+                onerror="this.src='../../../../assets/images/img/dummy-profile.png';" alt="" srcset="">
+        </ng-container>
+        <ng-template #noPic>
+            <img class="profile-img" src="../../../../assets/images/img/dummy-profile.png" alt="" srcset="">
+        </ng-template>
+        <div class="id">{{(user$ |async)?.matrimonyId}}</div>
+        <div class="name">{{(user$ |async)?.Name}}</div>
+
+        <div class="last-update">Last Update on 1<sup>st</sup> Dec 2020</div>
+
+        <div class="customer-detail">
+            <mat-icon>call</mat-icon>
+            <p>+91 {{(user$ |async)?.mobile}}</p>
+        </div>
+        <div class="customer-detail">
+            <mat-icon>alternate_email</mat-icon>
+            <p>{{(user$ |async)?.email}}</p>
+        </div>
+        <div class="customer-detail  c-p" routerLink="/layout/profile/edit">
+            <mat-icon>person</mat-icon>
+            <p> Edit Profile</p>
+            <mat-icon>edit</mat-icon>
+        </div>
+        <div class="customer-detail  c-p" routerLink="/layout/profile/edit-partner">
+            <mat-icon>people_alt</mat-icon>
+            <p>Edit Partner Preference</p>
+            <mat-icon>edit</mat-icon>
+        </div>
+        <div class="customer-detail  c-p" routerLink="/layout/profile/change-password">
+            <mat-icon>lock_open</mat-icon>
+            <p>Change Password</p>
+            <mat-icon>keyboard_arrow_right</mat-icon>
+        </div>
+        <div class="customer-detail  c-p" routerLink="/auth">
+            <mat-icon>login</mat-icon>
+            <p> Logout</p>
+            <mat-icon>keyboard_arrow_right</mat-icon>
+        </div>
+        <div class="version">Happy Life Matrimony - {{currenVersion}}</div>
+    </div>
+</div>

@@ -1,0 +1,239 @@
+<div class="container partner" *ngIf="detail">
+    <div class="row align-items-center">
+        <div class="col-md-4">
+            <ng-image-slider [images]="detail.profileImages" [imagePopup]="false" #nav></ng-image-slider>
+        </div>
+        <div class="col-md-8 col-lg-4">
+            <div class="name">{{detail.name}}</div>
+            <div class="other-detail">
+                {{detail?.matrimonyId}}
+            </div>
+            <div class="other-detail">
+                Profile created by {{detail.profileCreatedBy}}
+            </div>
+            <div class="actions">
+                <button class="interest-btn" (click)="addToInterested()">Interest</button>
+                <button class="horo-btn">Horoscope</button>
+                <button class="sortlist-btn" (click)="addToSortList()">Sort List</button>
+                <button class="call-btn">Call</button>
+            </div>
+        </div>
+    </div>
+    <hr>
+
+    <div class="row">
+        <div class="col-12">
+            <p class="heading">
+                About Me
+            </p>
+            <p class="description">
+                {{detail.aboutMe}}
+            </p>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-6 p10">
+            <div class="analyt">
+                <p class="heading"> Basic Information</p>
+                <div class="row">
+                    <div class="col-5">Name</div>
+                    <div class="col-1">:</div>
+                    <div class="col-5">{{detail.name}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-5">Mobile</div>
+                    <div class="col-1">:</div>
+                    <div class="col-5">{{detail.mobile}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-5">Email</div>
+                    <div class="col-1">:</div>
+                    <div class="col-5">{{detail.email}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-5">Age</div>
+                    <div class="col-1">:</div>
+                    <div class="col-5">{{detail.age}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-5">DOB</div>
+                    <div class="col-1">:</div>
+                    <div class="col-5">{{detail.dob}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-5">Martial Status</div>
+                    <div class="col-1">:</div>
+                    <div class="col-5">{{detail.maritalStaus}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-5">Languages Known</div>
+                    <div class="col-1">:</div>
+                    <div class="col-5">{{detail.languagesKnown}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-5">Height</div>
+                    <div class="col-1">:</div>
+                    <div class="col-5">{{detail.height}} cm</div>
+                </div>
+                <div class="row">
+                    <div class="col-5">Weight</div>
+                    <div class="col-1">:</div>
+                    <div class="col-5">{{detail.weight}} Kg</div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-6 p10">
+            <div class="analyt">
+                <p class="heading"> Self Information</p>
+                <div class="row">
+                    <div class="col-5">Mother Tongue</div>
+                    <div class="col-1">:</div>
+                    <div class="col-5">{{detail.motherTongue}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-5">Religion</div>
+                    <div class="col-1">:</div>
+                    <div class="col-5">{{detail.religion}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-5">Caste</div>
+                    <div class="col-1">:</div>
+                    <div class="col-5">{{detail.caste}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-5">Sub Caste</div>
+                    <div class="col-1">:</div>
+                    <div class="col-5">{{detail.subCaste}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-5">Gouthram</div>
+                    <div class="col-1">:</div>
+                    <div class="col-5">{{detail.gothram}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-5">Rasi</div>
+                    <div class="col-1">:</div>
+                    <div class="col-5">{{detail.rasi}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-5">Star</div>
+                    <div class="col-1">:</div>
+                    <div class="col-5">{{detail.star}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-5">Dosham</div>
+                    <div class="col-1">:</div>
+                    <div class="col-5">{{detail.dosham}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 p10 ">
+            <div class="analyt">
+                <p class="heading"> Professional Information</p>
+                <div class="row">
+                    <div class="col-5">Higher Education</div>
+                    <div class="col-1">:</div>
+                    <div class="col-5">{{detail.higheshEducation}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-5">Employed In</div>
+                    <div class="col-1">:</div>
+                    <div class="col-5">{{detail.employedIn}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-5">Occupation</div>
+                    <div class="col-1">:</div>
+                    <div class="col-5">{{detail.occupation}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-5">Organization</div>
+                    <div class="col-1">:</div>
+                    <div class="col-5">{{detail.organization}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-5">Annual Income</div>
+                    <div class="col-1">:</div>
+                    <div class="col-5">{{detail.annualIncome}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-5">Work Location</div>
+                    <div class="col-1">:</div>
+                    <div class="col-5">{{detail.workLocation}}</div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-6 p10">
+            <div class="analyt">
+                <p class="heading"> Family Information</p>
+                <div class="row">
+                    <div class="col-5">Family Type</div>
+                    <div class="col-1">:</div>
+                    <div class="col-5">{{detail.familyType}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-5">Family Status</div>
+                    <div class="col-1">:</div>
+                    <div class="col-5">{{detail.familyStatus}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-5">Father Occupation</div>
+                    <div class="col-1">:</div>
+                    <div class="col-5">{{detail.fatherOccupation}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-5">No. of Brothers</div>
+                    <div class="col-1">:</div>
+                    <div class="col-5">{{detail.noOfBrothers}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-5">No. of Sisters</div>
+                    <div class="col-1">:</div>
+                    <div class="col-5">{{detail.noOfSisters}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-5">Native Location</div>
+                    <div class="col-1">:</div>
+                    <div class="col-5">{{detail.nativePlace}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 p10">
+            <div class="analyt">
+                <p class="heading"> Self Information</p>
+                <div class="row">
+                    <div class="col-5">Eating Habit</div>
+                    <div class="col-1">:</div>
+                    <div class="col-5">{{detail.eating}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-5">Drinking Habit</div>
+                    <div class="col-1">:</div>
+                    <div class="col-5">{{detail.drinking}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-5">Smoking Habit</div>
+                    <div class="col-1">:</div>
+                    <div class="col-5">{{detail.smoking}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-5">Physical Status</div>
+                    <div class="col-1">:</div>
+                    <div class="col-5">{{detail.physicalStatus}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-5">Hobbies</div>
+                    <div class="col-1">:</div>
+                    <div class="col-5">{{detail.hobby}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container no-data" *ngIf="!detail">
+    <p>{{loading?'Loading...' :'Data Not Found'}}</p>
+    <img src="../../../../assets/images/img/waiting.png" alt="no data found" srcset="">
+</div>

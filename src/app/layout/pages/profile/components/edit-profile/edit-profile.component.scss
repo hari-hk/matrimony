@@ -1,0 +1,122 @@
+.profile {
+    height: calc(100vh - 60px);
+    overflow-y: scroll;
+
+    .title {
+        display: grid;
+        align-items: center;
+        justify-content: start;
+        grid-template-columns: 20px auto;
+        grid-gap: 0.8em;
+        margin: 10px 0;
+        p {
+            margin: 0;
+            font-weight: bold;
+        }
+        mat-icon {
+            cursor: pointer;
+        }
+    }
+}
+.analyt {
+    padding: 10px;
+    margin: 10px auto;
+}
+.tab-detail {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    button,
+    p {
+        margin: 0;
+        outline: none;
+    }
+    p {
+        color: var(--primary);
+        font-size: 16px;
+        font-weight: bold;
+    }
+}
+.f-group {
+    input,
+    label,
+    textarea,
+    select,
+    mat-icon {
+        color: #000000;
+    }
+
+    .fill-label {
+        background: #d4d3d3;
+    }
+}
+
+.button-form {
+    p {
+        color: #000000;
+        margin: 5px 0;
+        font-size: 12px;
+        margin-left: 8px;
+    }
+    .items {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: 1em;
+        grid-row-gap: 0.3em;
+        button {
+            padding: 4px !important;
+            font-size: 14px !important;
+            background: #ffffff;
+            border: none;
+            border-radius: 7px;
+            outline: none;
+            cursor: pointer;
+        }
+    }
+    .active {
+        background: var(--primary) !important;
+        color: #ffffff;
+    }
+}
+
+.profile-pic {
+    height: 180px;
+    width: 100%;
+    position: relative;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 10px;
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+    .change {
+        position: absolute;
+        padding: 10px;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        margin: auto;
+        background: linear-gradient(0deg, #212121, #5f5f5f, transparent);
+        font-weight: bold;
+        color: #ffffff;
+        text-align: center;
+        cursor: pointer;
+        z-index: 1;
+        width: 100%;
+        border: none;
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        outline: none;
+
+        &:hover {
+            background: linear-gradient(2deg, #212121, #5f5f5f, transparent);
+        }
+    }
+}
+.p-7 {
+    padding: 7px;
+}

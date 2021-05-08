@@ -1,0 +1,77 @@
+.profile {
+    height: calc(100vh - 60px);
+    overflow-y: scroll;
+    .title {
+        font-size: 17px;
+        font-weight: bold;
+        color: var(--primary);
+        text-align: center;
+        margin: 10px 0;
+    }
+    .profile-img {
+        width: 60px;
+        height: 60px;
+        margin: 10px auto;
+        display: block;
+        background: #fff;
+        border-radius: 50%;
+    }
+    .id {
+        font-size: 12px;
+        color: var(--primary);
+        text-align: center;
+        margin-top: 10px;
+    }
+    .version {
+        font-size: 12px;
+        color: #545454;
+        text-align: center;
+        margin-top: 15px;
+    }
+    .name {
+        font-weight: bold;
+        font-size: 14px;
+        text-align: center;
+    }
+    .last-update {
+        font-weight: 400;
+        font-size: 12px;
+        text-align: center;
+        margin: 7px 0;
+        font-style: italic;
+        color: #545454;
+    }
+    .customer-detail {
+        display: grid;
+        grid-template-columns: 17px auto 17px;
+        grid-gap: 0.8rem;
+        font-size: 12px;
+        align-items: center;
+        border-bottom: 1px solid rgb(238 238 238 / 38%);
+        padding: 10px;
+        &:last-child() {
+            border: none !important;
+        }
+        &:first-child() {
+            margin-top: 15px !important;
+        }
+
+        p {
+            margin: 0;
+            font-weight: bold;
+        }
+    }
+    .analyt {
+        padding: 10px;
+        max-width: 600px;
+        margin: 10px auto;
+    }
+}
+.c-p {
+    cursor: pointer;
+    transition: background-color 0.5s ease-in-out;
+    outline: none;
+    &:hover {
+        background-color: rgb(224 224 224 / 49%);
+    }
+}

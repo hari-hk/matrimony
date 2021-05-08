@@ -1,0 +1,84 @@
+<h2 mat-dialog-title>Advance Search</h2>
+<mat-dialog-content class="mat-typography">
+    <div class="row">
+        <div class="f-group assembled d-flex align-items-center">
+            <label for="name">Select Age</label>
+            <div class="select-guard" (click)="openAutoComplete('ageFrom')">
+                <select name="ageFrom" [(ngModel)]="filterData.ageFrom" id="ageFrom" disabled>
+                    <option *ngFor="let item of numbers.from" [value]="item">{{item}}</option>
+                </select>
+            </div>
+            <span>To</span>
+            <div class="select-guard" (click)="filterData.ageFrom && openAutoComplete('ageTo')">
+                <select name="ageTo" [(ngModel)]="filterData.ageTo" id="ageTo" disabled>
+                    <option *ngFor="let item of numbers.to" [value]="item">{{item}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="f-group assembled d-flex align-items-center">
+            <label for="name">Select Height</label>
+            <div class="select-guard" (click)="openAutoComplete('heightFrom')">
+                <select name="heightFrom" id="heightFrom" [(ngModel)]="filterData.heightFrom" disabled>
+                    <option *ngFor="let item of height" [value]="item.id">{{item.name}}</option>
+                </select>
+            </div>
+            <span>To</span>
+            <div class="select-guard" (click)="openAutoComplete('heightTo')">
+                <select name="heightTo" id="heightTo" [(ngModel)]="filterData.heightTo" disabled>
+                    <option *ngFor="let item of height" [value]="item.id">{{item.name}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="f-group select-guard" (click)="openAutoComplete('maritalStatus')">
+            <label for="maritalStatus">Marital Status</label>
+            <select name="maritalStatus" id="maritalStatus" [(ngModel)]="filterData.maritalStatus" disabled>
+                <option *ngFor="let item of martialStatus" [value]="item.id">{{item.name}}</option>
+            </select>
+        </div>
+        <div class="f-group select-guard" (click)="openAutoComplete('motherTongue')">
+            <label for="motherTongue">Mother Tongue</label>
+            <select name="motherTongue" id="motherTongue" [(ngModel)]="filterData.motherTongue" disabled>
+                <option *ngFor="let item of languages" [value]="item.id">{{item.name}}</option>
+            </select>
+        </div>
+        <div class="f-group select-guard" (click)="openAutoComplete('subcaste')">
+            <label for="subcaste">Sub caste</label>
+            <!-- <select name="subcaste" id="subcaste" [(ngModel)]="filterData.subcaste" disabled multiple>
+                <option *ngFor="let item of subcaste" [value]="item.id">{{item.name}}</option>
+            </select> -->
+            <mat-select [(ngModel)]="filterData.subcaste" multiple disabled>
+                <mat-option *ngFor="let item of subcaste" [value]="item.id">{{item.name}}</mat-option>
+            </mat-select>
+        </div>
+        <div class="f-group select-guard" (click)="openAutoComplete('star')">
+            <label for="star">Star</label>
+            <select name="star" id="star" [(ngModel)]="filterData.star" disabled>
+                <option *ngFor="let item of star" [value]="item.id">{{item.name}}</option>
+            </select>
+        </div>
+        <div class="f-group select-guard" (click)="openAutoComplete('dosham')">
+            <label for="dosham">Dhosam</label>
+            <select name="dosham" id="dosham" [(ngModel)]="filterData.dosham" disabled>
+                <option *ngFor="let item of dhosam" [value]="item.id">{{item.name}}</option>
+            </select>
+        </div>
+        <div class="f-group select-guard" (click)="openAutoComplete('occupation')">
+            <label for="occupation">Occupation</label>
+            <select name="occupation" id="occupation" [(ngModel)]="filterData.occupation" disabled>
+                <option *ngFor="let item of occupation" [value]="item.id">{{item.name}}</option>
+            </select>
+        </div>
+        <div class="f-group select-guard" (click)="openAutoComplete('annualIncome')">
+            <label for="annualIncome">Annual income (minimum)</label>
+            <select name="annualIncome" id="annualIncome" [(ngModel)]="filterData.annualIncome" disabled>
+                <option *ngFor="let item of annualIncome" [value]="item.id">{{item.name}}</option>
+            </select>
+        </div>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+    <div class="d-flex action">
+        <button class="cancel-btn" mat-button mat-dialog-close>Cancel</button>
+        <button class="search-btn" mat-button mat-dialog-close>Apply Filter</button>
+    </div>
+</mat-dialog-actions>

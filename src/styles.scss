@@ -1,0 +1,126 @@
+@import url("https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap");
+@import url("./assets/css/bootstrap.min.css");
+
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: #ececec;
+    height: 100vh;
+    width: 100vw;
+}
+
+*,
+*:before,
+*:after {
+    font-family: "Oxygen", sans-serif;
+    box-sizing: border-box !important;
+}
+pre {
+    font-family: "Oxygen", sans-serif !important;
+    font-size: inherit;
+}
+md-icon {
+    font-family: "Material Icons" !important;
+}
+
+:root {
+    --primary: #ff5276;
+}
+.error {
+    border: 1px solid var(--primary) !important;
+}
+
+.container-fluid,
+.container {
+    padding: 0 !important;
+    margin: auto;
+}
+
+.analyt {
+    background: rgb(255 255 255 / 59%);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(5px);
+    background-clip: padding-box;
+    border: 2px solid rgba(255, 255, 255, 0.18);
+    -webkit-backdrop-filter: blur(5px);
+    border-radius: 10px;
+}
+.loader {
+    height: 20px;
+}
+.f-group {
+    position: relative;
+    width: 100%;
+
+    label {
+        position: absolute;
+        font-size: 12px;
+        top: 19px;
+        left: 13px;
+        color: #ffffff;
+        z-index: 1;
+    }
+    input,
+    textarea,
+    select,
+    mat-select {
+        width: 100%;
+        background: rgb(169 169 169 / 15%);
+        color: #ffffff;
+        border: 1px solid #ffffff;
+        outline: none;
+        box-shadow: 0 8px 12px 0 #d6d6d6;
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        border-radius: 10px;
+        padding: 26px 10px 10px 14px;
+        margin: 10px 0;
+        font-size: 16px;
+    }
+}
+
+.interest-btn {
+    background: #cb356b; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #bd3f32, #cb356b); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(
+        to right,
+        #bd3f32,
+        #cb356b
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: #ffffff;
+}
+.sortlist-btn {
+    background: #0575e6; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #021b79, #0575e6); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(
+        to right,
+        #021b79,
+        #0575e6
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: #ffffff;
+}
+.call-btn {
+    background: #67b26f; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #4ca2cd, #67b26f); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(
+        to right,
+        #4ca2cd,
+        #67b26f
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.horo-btn {
+    background: #a770ef; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #fdb99b, #cf8bf3, #a770ef); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(
+        to right,
+        #fdb99b,
+        #cf8bf3,
+        #a770ef
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
